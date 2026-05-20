@@ -32,7 +32,7 @@ export default function Header() {
       href: '/workflow',
     },
     {
-      label: 'Contact',
+      label: 'Contact Us',
       href: '/contact',
     },
   ]

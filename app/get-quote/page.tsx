@@ -1,283 +1,297 @@
+// app/get-quote/page.tsx
+
 "use client";
 
 import { useState } from "react";
+import {
+  Building2,
+  GraduationCap,
+  ClipboardList,
+  ArrowRight,
+  CheckCircle2,
+  Phone,
+  Mail,
+} from "lucide-react";
+
+const solutions = [
+  "OMR Sheet Designing",
+  "OMR Sheet Printing",
+  "OMR Scanning & Processing",
+  "Result Processing",
+  "Analytics & Reporting",
+  "Enterprise Data Collection",
+];
+
+const industries = [
+  {
+    title: "Educational Institutions",
+    icon: GraduationCap,
+  },
+  {
+    title: "Government & Recruitment",
+    icon: Building2,
+  },
+  {
+    title: "Enterprise & Research",
+    icon: ClipboardList,
+  },
+];
 
 export default function GetQuotePage() {
-  const [formData, setFormData] = useState({
-    company: "",
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    budget: "",
-    message: "",
-  });
+  const [selectedSolutions, setSelectedSolutions] = useState<string[]>([]);
 
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    setLoading(true);
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        window.open(
-          `https://wa.me/919810392402?text=${encodeURIComponent(
-            `Hello MarkReader,
-
-Company: ${formData.company}
-Name: ${formData.name}
-Phone: ${formData.phone}
-Service: ${formData.service}
-Budget: ${formData.budget}
-
-Message:
-${formData.message}`,
-          )}`,
-          "_blank",
-        );
-
-        alert("Quote request submitted successfully");
-
-        setFormData({
-          company: "",
-          name: "",
-          email: "",
-          phone: "",
-          service: "",
-          budget: "",
-          message: "",
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong");
-    } finally {
-      setLoading(false);
+  const handleCheckbox = (value: string) => {
+    if (selectedSolutions.includes(value)) {
+      setSelectedSolutions(
+        selectedSolutions.filter((item) => item !== value)
+      );
+    } else {
+      setSelectedSolutions([...selectedSolutions, value]);
     }
   };
 
   return (
-    <main className="bg-white text-slate-900 overflow-hidden">
+    <main className="min-h-screen bg-[#020617] text-white">
       {/* Hero */}
-      {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-slate-950">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2200&auto=format&fit=crop"
-            alt="Get Quote"
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <section className="relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_50%)]" />
 
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-slate-950/75" />
+        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-300 backdrop-blur">
+              Enterprise OMR Solutions
+            </div>
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/40" />
-
-        {/* Glow Effects */}
-        <div className="orange-glow top-[-120px] left-[-120px]" />
-
-        <div className="orange-glow bottom-[-220px] right-[-120px]" />
-
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full">
-          <div className="max-w-4xl">
-            <p className="uppercase tracking-[0.4em] text-sm text-orange-400 mb-6 font-semibold">
-              Contact Us
-            </p>
-
-            <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight text-white">
-              Let’s Build Future-Ready
-              <br />
-              Industrial Solutions
-              <br />
-              Together
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+              Get a Custom Quote
             </h1>
 
-            <p className="mt-10 text-xl text-slate-300 leading-9 max-w-3xl">
-              Connect with MarkReader for engineering excellence, manufacturing
-              support, and industrial innovation tailored to your business.
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
+              Looking for a complete OMR solution for examinations, surveys,
+              recruitment or enterprise workflows? Share your requirements and
+              our team will provide a customized quotation tailored to your
+              operational needs.
             </p>
           </div>
         </div>
       </section>
-      {/* Form Section */}
-      <section className="relative bg-slate-950 pb-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Left */}
-            <div className="pt-10 lg:pt-24">
-              <p className="uppercase tracking-[0.35em] text-sm text-orange-400 font-semibold mb-4">
-                Why Choose Us
-              </p>
 
-              <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-white">
-                Smart Industrial Solutions Backed By Engineering Excellence
+      {/* Form Section */}
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+          {/* Form */}
+          <div className="overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] p-8 shadow-2xl backdrop-blur">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-white">
+                Request a Quote
               </h2>
 
-              <p className="mt-8 text-lg leading-8 text-slate-300">
-                MarkReader delivers reliable industrial services focused on
-                automation, manufacturing, engineering precision, and
-                operational efficiency.
+              <p className="mt-3 text-slate-400">
+                Fill in your details and we’ll get back to you with the best
+                OMR solution for your organization.
               </p>
+            </div>
 
-              <div className="space-y-6 mt-12">
+            <form className="space-y-6">
+              {/* Name */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-300">
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                />
+              </div>
+
+              {/* Organization */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-300">
+                  Organization / Institute
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Organization name"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                />
+              </div>
+
+              {/* Email + Phone */}
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-300">
+                    Email Address
+                  </label>
+
+                  <input
+                    type="email"
+                    placeholder="you@example.com"
+                    className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-300">
+                    Phone Number
+                  </label>
+
+                  <input
+                    type="tel"
+                    placeholder="+91 9876543210"
+                    className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                  />
+                </div>
+              </div>
+
+              {/* Industry */}
+              <div>
+                <label className="mb-4 block text-sm font-medium text-slate-300">
+                  Select Industry
+                </label>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                  {industries.map((industry) => {
+                    const Icon = industry.icon;
+
+                    return (
+                      <button
+                        type="button"
+                        key={industry.title}
+                        className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-5 text-center transition hover:border-white/20 hover:bg-white/10"
+                      >
+                        <Icon className="h-8 w-8 text-white" />
+
+                        <span className="mt-3 text-sm font-medium text-slate-300">
+                          {industry.title}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Solutions */}
+              <div>
+                <label className="mb-4 block text-sm font-medium text-slate-300">
+                  Required Services
+                </label>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  {solutions.map((solution) => (
+                    <label
+                      key={solution}
+                      className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/10"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedSolutions.includes(solution)}
+                        onChange={() => handleCheckbox(solution)}
+                        className="h-4 w-4 rounded border-white/20 bg-transparent"
+                      />
+
+                      <span className="text-sm text-slate-300">
+                        {solution}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Message */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-300">
+                  Project Requirements
+                </label>
+
+                <textarea
+                  rows={6}
+                  placeholder="Tell us about your examination, survey or OMR workflow requirements..."
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                />
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-4 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
+              >
+                Submit Quote Request
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </form>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Why Choose */}
+            <div className="rounded-[32px] border border-white/10 bg-white/[0.03] p-8 backdrop-blur">
+              <h3 className="text-2xl font-bold text-white">
+                Why MarkReader?
+              </h3>
+
+              <div className="mt-6 space-y-4">
                 {[
-                  "Advanced Engineering Solutions",
-                  "Scalable Manufacturing Support",
-                  "Dedicated Technical Assistance",
-                  "Fast Project Delivery",
-                ].map((item, index) => (
+                  "High-Speed OMR Processing",
+                  "Enterprise Grade Accuracy",
+                  "Scalable Infrastructure",
+                  "Automated Reporting",
+                  "Secure Data Management",
+                  "Dedicated Support",
+                ].map((item) => (
                   <div
-                    key={index}
-                    className="glass-card rounded-2xl p-5 flex items-start gap-4"
+                    key={item}
+                    className="flex items-start gap-3"
                   >
-                    <div className="w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold flex-shrink-0">
-                      ✓
-                    </div>
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 text-white" />
 
-                    <p className="text-slate-200 text-lg">{item}</p>
+                    <p className="text-sm text-slate-400">{item}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Form */}
-            <div className="relative lg:-mt-32">
-              <div
-                className="
-            relative
-            glass-card
-            rounded-[2.5rem]
-            p-8
-            lg:p-10
-            border
-            border-orange-500/20
-            shadow-[0_30px_80px_rgba(0,0,0,0.45)]
-            overflow-hidden
-          "
-              >
-                {/* Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent" />
+            {/* Contact */}
+            <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-slate-900 to-black p-8 shadow-2xl">
+              <h3 className="text-2xl font-bold text-white">
+                Contact Information
+              </h3>
 
-                {/* Badge */}
-                <div className="absolute top-6 right-6 z-20 bg-orange-500/20 border border-orange-500/30 backdrop-blur-xl px-4 py-2 rounded-full text-sm text-orange-300 font-medium">
-                  Fast Response
+              <div className="mt-8 space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                    <Phone className="h-5 w-5 text-white" />
+                  </div>
+
+                  <div>
+                    <p className="text-sm text-slate-500">Phone</p>
+                    <p className="mt-1 font-medium text-white">
+                      +91-9810392402, +91-9971543678
+                    </p>
+                  </div>
                 </div>
 
-                <div className="relative z-10">
-  <form onSubmit={handleSubmit} className="space-y-6">
-    <div className="grid md:grid-cols-2 gap-6">
-      <input
-        type="text"
-        name="company"
-        placeholder="Company Name"
-        value={formData.company}
-        onChange={handleChange}
-        className="w-full rounded-xl bg-slate-900/70 border border-slate-700 px-5 py-4 text-white placeholder:text-slate-400 outline-none focus:border-orange-500"
-      />
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                    <Mail className="h-5 w-5 text-white" />
+                  </div>
 
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        value={formData.name}
-        onChange={handleChange}
-        className="w-full rounded-xl bg-slate-900/70 border border-slate-700 px-5 py-4 text-white placeholder:text-slate-400 outline-none focus:border-orange-500"
-      />
-    </div>
+                  <div>
+                    <p className="text-sm text-slate-500">Email</p>
+                    <p className="mt-1 font-medium text-white">
+                      info@omr.in
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-    <div className="grid md:grid-cols-2 gap-6">
-      <input
-        type="email"
-        name="email"
-        placeholder="Email Address"
-        value={formData.email}
-        onChange={handleChange}
-        className="w-full rounded-xl bg-slate-900/70 border border-slate-700 px-5 py-4 text-white placeholder:text-slate-400 outline-none focus:border-orange-500"
-      />
-
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone Number"
-        value={formData.phone}
-        onChange={handleChange}
-        className="w-full rounded-xl bg-slate-900/70 border border-slate-700 px-5 py-4 text-white placeholder:text-slate-400 outline-none focus:border-orange-500"
-      />
-    </div>
-
-    <div className="grid md:grid-cols-2 gap-6">
-      <select
-        name="service"
-        value={formData.service}
-        onChange={handleChange}
-        className="w-full rounded-xl bg-slate-900/70 border border-slate-700 px-5 py-4 text-white outline-none focus:border-orange-500"
-      >
-        <option value="">Select Service</option>
-        <option value="Automation">Automation</option>
-        <option value="Manufacturing">Manufacturing</option>
-        <option value="Engineering">Engineering</option>
-        <option value="Industrial Consulting">
-          Industrial Consulting
-        </option>
-      </select>
-
-      <select
-        name="budget"
-        value={formData.budget}
-        onChange={handleChange}
-        className="w-full rounded-xl bg-slate-900/70 border border-slate-700 px-5 py-4 text-white outline-none focus:border-orange-500"
-      >
-        <option value="">Project Budget</option>
-        <option value="Under ₹50K">Under ₹50K</option>
-        <option value="₹50K - ₹2L">₹50K - ₹2L</option>
-        <option value="₹2L - ₹10L">₹2L - ₹10L</option>
-        <option value="Above ₹10L">Above ₹10L</option>
-      </select>
-    </div>
-
-    <textarea
-      name="message"
-      rows={6}
-      placeholder="Tell us about your project..."
-      value={formData.message}
-      onChange={handleChange}
-      className="w-full rounded-2xl bg-slate-900/70 border border-slate-700 px-5 py-4 text-white placeholder:text-slate-400 outline-none focus:border-orange-500 resize-none"
-    />
-
-    <button
-      type="submit"
-      disabled={loading}
-      className="w-full rounded-2xl bg-orange-500 hover:bg-orange-600 transition-all duration-300 py-4 text-lg font-semibold text-white shadow-lg shadow-orange-500/20"
-    >
-      {loading ? "Submitting..." : "Request Quote"}
-    </button>
-  </form>
-</div>
+              <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-sm leading-7 text-slate-400">
+                  Our team will analyze your requirements and provide a tailored
+                  quotation including hardware, software and workflow solutions.
+                </p>
               </div>
             </div>
           </div>

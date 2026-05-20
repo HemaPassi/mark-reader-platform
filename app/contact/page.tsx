@@ -1,29 +1,38 @@
 "use client";
 
 import { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  MessageCircle,
+  Clock3,
+  Building2,
+  Send,
+  ChevronRight,
+} from "lucide-react";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
+    company: "",
     service: "",
     message: "",
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+  // =========================================
+  // EMAIL SUBMIT
+  // =========================================
+  const handleEmailSubmit = async (
+    e: React.FormEvent
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    setLoading(true);
 
     try {
       const response = await fetch("/api/contact", {
@@ -31,260 +40,482 @@ export default function ContactPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(form),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        // Open WhatsApp
-        window.open(
-          `https://wa.me/919871698968?text=${encodeURIComponent(
-            `Hello OMR India,
+        alert("Message sent successfully!");
 
-Name: ${formData.name}
-Phone: ${formData.phone}
-Service: ${formData.service}`,
-          )}`,
-          "_blank",
-        );
-
-        alert("Message sent successfully");
-
-        setFormData({
+        setForm({
           name: "",
           email: "",
           phone: "",
+          company: "",
           service: "",
           message: "",
         });
+      } else {
+        alert(data.message);
       }
     } catch (error) {
-      console.error(error);
+      alert("Something went wrong.");
     }
+
+    setLoading(false);
   };
 
-  const contactInfo = [
-    {
-      title: "Office Address",
-      value: "OMR India, New Delhi, India",
-    },
-    {
-      title: "Email Address",
-      value: "info@omr.in",
-    },
-    {
-      title: "Phone Number",
-      value: "+91 9810392402, +91 9971543678",
-    },
-    {
-      title: "Working Hours",
-      value: "Mon - Sat : 9:00 AM - 7:00 PM",
-    },
-  ];
+  // =========================================
+  // WHATSAPP
+  // =========================================
+  const handleWhatsApp = () => {
+    const phoneNumber = "919999999999";
+
+    const message = `
+Hello OMR India,
+
+Name: ${form.name}
+Email: ${form.email}
+Phone: ${form.phone}
+Company: ${form.company}
+Service: ${form.service}
+
+Message:
+${form.message}
+`;
+
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(url, "_blank");
+  };
 
   return (
-    <main className="bg-white text-slate-900 overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[65vh] flex items-center bg-slate-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <img
-            src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2200&auto=format&fit=crop"
-            alt="Contact"
-            className="w-full h-full object-cover"
-          />
-        </div>
+    <main className="bg-white">
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_#3b82f6,_transparent_30%)]" />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent" />
+        <div className="relative max-w-7xl mx-auto px-4 py-28">
+          <div className="max-w-4xl">
+            <span className="inline-flex items-center gap-2 bg-white/10 border border-white/10 px-5 py-2 rounded-full text-sm">
+              <MessageCircle className="w-4 h-4" />
+              Fast Response Within Business Hours
+            </span>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-24 w-full">
-          <div className="max-w-3xl">
-            <p className="uppercase tracking-[0.4em] text-sm text-orange-400 mb-6 font-medium">
-              Contact Us
-            </p>
-
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight text-white">
-              Let’s Build Future-Ready Industrial Solutions Together
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight mt-8">
+              Let’s Simplify Your
+              <span className="text-blue-400">
+                {" "}
+                OMR Workflow
+              </span>
             </h1>
 
-            <p className="mt-8 text-lg md:text-xl text-slate-300 leading-9 max-w-xl">
-               Connect with OMR India for engineering
-               excellence, manufacturing support, and industrial 
-               innovation tailored to your business.
+            <p className="mt-8 text-xl text-slate-300 leading-relaxed max-w-3xl">
+              Connect with OMR India for OMR
+              sheet designing, scanning,
+              evaluation systems, data
+              processing, recruitment exams,
+              survey automation, and
+              enterprise workflow solutions.
             </p>
+
+            {/* QUICK ACTIONS */}
+            <div className="flex flex-wrap gap-4 mt-10">
+              <a
+                href="tel:+919999999999"
+                className="bg-white text-slate-900 hover:bg-slate-200 px-6 py-4 rounded-2xl font-semibold transition flex items-center gap-2"
+              >
+                <Phone className="w-5 h-5" />
+                Call Now
+              </a>
+
+              <button
+                onClick={handleWhatsApp}
+                className="bg-green-600 hover:bg-green-700 px-6 py-4 rounded-2xl font-semibold transition flex items-center gap-2"
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp Us
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-     
-      {/* Contact Section */}
-<section className="relative bg-white pt-0 pb-24 z-20">
-    <div className="max-w-7xl mx-auto px-6 lg:px-10">
-    <div className="grid lg:grid-cols-2 gap-16 items-start">
-      
-      {/* Left Side */}
-      <div className="pt-10">
-        <p className="uppercase tracking-[0.35em] text-sm text-orange-500 font-semibold mb-4">
-          Get In Touch
-        </p>
+      {/* CONTACT SECTION */}
+      <section className="max-w-7xl mx-auto px-4 py-24">
+        <div className="grid lg:grid-cols-5 gap-10">
+          {/* LEFT SIDE */}
+          <div className="lg:col-span-2">
+            <span className="text-blue-600 uppercase tracking-widest font-semibold">
+              Quick Connect
+            </span>
 
-        <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-slate-900">
-          We’re Ready To Support Your Industrial Growth
-        </h2>
+            <h2 className="text-4xl font-bold text-slate-900 mt-4 leading-tight">
+              Speak With Our OMR Experts
+            </h2>
 
-        <p className="mt-8 text-lg leading-8 text-slate-600">
-          Whether you need engineering consultation, manufacturing support,
-          automation services, or technical assistance, our team is ready to
-          help.
-        </p>
+            <p className="text-slate-600 mt-6 leading-relaxed">
+              Whether you need high-volume
+              examination processing,
+              customized OMR sheets, or
+              enterprise-level automation,
+              our team is ready to assist you.
+            </p>
 
-        <div className="space-y-6 mt-12">
-          {contactInfo.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-start gap-5 bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-orange-100 text-orange-500 flex items-center justify-center text-xl font-bold flex-shrink-0">
-                0{index + 1}
+            {/* CONTACT CARDS */}
+            <div className="mt-10 space-y-5">
+              <div className="border rounded-3xl p-6 flex gap-5 hover:shadow-lg transition">
+                <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl h-fit">
+                  <Phone className="w-6 h-6" />
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-lg">
+                    Phone Support
+                  </h3>
+
+                  <p className="text-slate-600 mt-1">
+                     +91-9810392402, +91-9971543678
+                  </p>
+
+                  <p className="text-sm text-slate-500 mt-2">
+                    Instant assistance during
+                    business hours.
+                  </p>
+                </div>
+              </div>
+
+              <div className="border rounded-3xl p-6 flex gap-5 hover:shadow-lg transition">
+                <div className="bg-green-100 text-green-600 p-4 rounded-2xl h-fit">
+                  <MessageCircle className="w-6 h-6" />
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-lg">
+                    WhatsApp
+                  </h3>
+
+                  <p className="text-slate-600 mt-1">
+                    Quick business inquiry &
+                    support
+                  </p>
+
+                  <button
+                    onClick={handleWhatsApp}
+                    className="text-green-600 font-semibold flex items-center gap-1 mt-3"
+                  >
+                    Start Chat
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="border rounded-3xl p-6 flex gap-5 hover:shadow-lg transition">
+                <div className="bg-orange-100 text-orange-600 p-4 rounded-2xl h-fit">
+                  <Mail className="w-6 h-6" />
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-lg">
+                    Email
+                  </h3>
+
+                  <p className="text-slate-600 mt-1">
+                    info@omr.in
+                  </p>
+
+                  <p className="text-sm text-slate-500 mt-2">
+                    Best for enterprise and
+                    bulk inquiries.
+                  </p>
+                </div>
+              </div>
+
+              <div className="border rounded-3xl p-6 flex gap-5 hover:shadow-lg transition">
+                <div className="bg-purple-100 text-purple-600 p-4 rounded-2xl h-fit">
+                  <MapPin className="w-6 h-6" />
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-lg">
+                    Office Location
+                  </h3>
+
+                  <p className="text-slate-600 mt-1">
+                   Delhi, India
+                  </p>
+                </div>
+              </div>
+
+              <div className="border rounded-3xl p-6 flex gap-5 hover:shadow-lg transition">
+                <div className="bg-pink-100 text-pink-600 p-4 rounded-2xl h-fit">
+                  <Clock3 className="w-6 h-6" />
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-lg">
+                    Business Hours
+                  </h3>
+
+                  <p className="text-slate-600 mt-1">
+                    Monday - Saturday
+                  </p>
+
+                  <p className="text-slate-600">
+                    9:00 AM - 6:00 PM
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* FORM */}
+          <div className="lg:col-span-3 bg-white border rounded-[32px] p-8 md:p-10 shadow-xl">
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-100 p-3 rounded-2xl">
+                <Send className="w-6 h-6 text-blue-600" />
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-slate-900">
-                  {item.title}
+                <h3 className="text-3xl font-bold text-slate-900">
+                  Send Inquiry
                 </h3>
 
-                <p className="mt-2 text-slate-600 leading-7">
-                  {item.value}
+                <p className="text-slate-600 mt-1">
+                  Our team will respond
+                  shortly.
                 </p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Right Form */}
-     <div className="relative lg:-mt-52 z-30">
-        <div
-          className="
-            relative
-            glass-card
-            rounded-[2.5rem]
-            p-8
-            lg:p-10
-            shadow-[0_30px_80px_rgba(0,0,0,0.45)]
-            border
-            border-orange-500/20
-            overflow-hidden
-            bg-slate-950
-          "
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent" />
+            <form
+              onSubmit={handleEmailSubmit}
+              className="mt-10 space-y-6"
+            >
+              {/* ROW */}
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="text-sm font-medium text-slate-700">
+                    Full Name
+                  </label>
 
-          <div className="relative z-10">
-            <p className="uppercase tracking-[0.35em] text-sm text-orange-400 font-semibold">
-              Send Message
-            </p>
+                  <input
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        name:
+                          e.target.value,
+                      })
+                    }
+                    placeholder="John Doe"
+                    className="w-full mt-2 border rounded-2xl p-4 focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                </div>
 
-            <h2 className="mt-5 text-3xl lg:text-4xl font-bold text-white leading-tight">
-              Request A Consultation
-            </h2>
+                <div>
+                  <label className="text-sm font-medium text-slate-700">
+                    Email Address
+                  </label>
 
-            <form onSubmit={handleSubmit} className="space-y-6 mt-10">
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Full Name"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 outline-none focus:border-orange-500"
-                />
-
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 outline-none focus:border-orange-500"
-                />
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        email:
+                          e.target.value,
+                      })
+                    }
+                    placeholder="john@example.com"
+                    className="w-full mt-2 border rounded-2xl p-4 focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Phone Number"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 outline-none focus:border-orange-500"
-                />
+              {/* ROW */}
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="text-sm font-medium text-slate-700">
+                    Phone Number
+                  </label>
+
+                  <input
+                    type="text"
+                    value={form.phone}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        phone:
+                          e.target.value,
+                      })
+                    }
+                    placeholder="+91 9876543210"
+                    className="w-full mt-2 border rounded-2xl p-4 focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium text-slate-700">
+                    Organization
+                  </label>
+
+                  <input
+                    type="text"
+                    value={form.company}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        company:
+                          e.target.value,
+                      })
+                    }
+                    placeholder="School / Company"
+                    className="w-full mt-2 border rounded-2xl p-4 focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* SERVICE */}
+              <div>
+                <label className="text-sm font-medium text-slate-700">
+                  Interested Service
+                </label>
 
                 <select
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-orange-500"
+                  value={form.service}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      service:
+                        e.target.value,
+                    })
+                  }
+                  className="w-full mt-2 border rounded-2xl p-4 focus:ring-2 focus:ring-blue-500 outline-none"
                 >
-                  <option value="" className="bg-slate-900">
+                  <option value="">
                     Select Service
                   </option>
 
-                  <option value="Engineering" className="bg-slate-900">
-                    Industrial Engineering
+                  <option>
+                    OMR Sheet Designing
                   </option>
 
-                  <option value="Manufacturing" className="bg-slate-900">
-                    Manufacturing Solutions
+                  <option>
+                    OMR Scanning
                   </option>
 
-                  <option value="Automation" className="bg-slate-900">
-                    Automation Systems
+                  <option>
+                    Examination Processing
+                  </option>
+
+                  <option>
+                    Survey Automation
+                  </option>
+
+                  <option>
+                    Recruitment Assessment
+                  </option>
+
+                  <option>
+                    Enterprise Workflow
                   </option>
                 </select>
               </div>
 
-              <textarea
-                rows={6}
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Write your message"
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 outline-none focus:border-orange-500 resize-none"
-              />
+              {/* MESSAGE */}
+              <div>
+                <label className="text-sm font-medium text-slate-700">
+                  Message
+                </label>
 
-              <button
-                type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-600 transition-all duration-300 text-white font-semibold py-4 rounded-2xl shadow-xl hover:shadow-orange-500/30"
-              >
-                Send Message
-              </button>
+                <textarea
+                  required
+                  rows={6}
+                  value={form.message}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      message:
+                        e.target.value,
+                    })
+                  }
+                  placeholder="Tell us about your project or requirement..."
+                  className="w-full mt-2 border rounded-2xl p-4 focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+              </div>
 
+              {/* BUTTONS */}
+              <div className="grid md:grid-cols-2 gap-5">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-slate-900 hover:bg-slate-800 text-white py-4 rounded-2xl font-semibold transition"
+                >
+                  {loading
+                    ? "Sending..."
+                    : "Send Email"}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  className="bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-semibold transition"
+                >
+                  Send WhatsApp
+                </button>
+              </div>
             </form>
           </div>
         </div>
-      </div>
+      </section>
 
-    </div>
-  </div>
-</section>
+      {/* MAP SECTION */}
+      <section className="bg-slate-100 py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center">
+            <span className="text-blue-600 uppercase tracking-widest font-semibold">
+              Visit Us
+            </span>
 
-      {/* Map Section */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200 h-[500px] relative">
+            <h2 className="text-4xl font-bold text-slate-900 mt-4">
+              Our Office Location
+            </h2>
+
+            <p className="text-slate-600 mt-5 max-w-2xl mx-auto">
+              Connect with our team for OMR
+              consultation, onboarding, and
+              enterprise workflow solutions.
+            </p>
+          </div>
+
+          <div className="mt-14 rounded-[32px] overflow-hidden border shadow-lg">
             <iframe
-              title="Google Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224346.48177671552!2d77.06889995382917!3d28.527280343873994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d194f8b90d1d5%3A0x4c63c7e7c8e8c7f3!2sNew%20Delhi!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224346.48177722894!2d76.76356959999999!3d28.4231876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1864f2a4c2c9%3A0x94e7f5c5f5f5f5f5!2sGurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1716200000000"
               width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
+              height="500"
               loading="lazy"
+              className="border-0"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
         </div>
       </section>
+
+      {/* FLOATING WHATSAPP */}
+      <button
+        onClick={handleWhatsApp}
+        className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white p-5 rounded-full shadow-2xl transition z-50"
+      >
+        <MessageCircle className="w-7 h-7" />
+      </button>
     </main>
   );
 }
