@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   Phone,
   Mail,
+  MessageCircle,
 } from "lucide-react";
 
 const solutions = [
@@ -38,201 +39,422 @@ const industries = [
 ];
 
 export default function GetQuotePage() {
-  const [selectedSolutions, setSelectedSolutions] = useState<string[]>([]);
+  const [loading, setLoading] =
+    useState(false);
 
+  const [selectedSolutions, setSelectedSolutions] =
+    useState<string[]>([]);
+
+  const [selectedIndustry, setSelectedIndustry] =
+    useState("");
+
+  const [form, setForm] = useState({
+    name: "",
+    organization: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  // ======================================
+  // HANDLE CHECKBOX
+  // ======================================
   const handleCheckbox = (value: string) => {
     if (selectedSolutions.includes(value)) {
       setSelectedSolutions(
-        selectedSolutions.filter((item) => item !== value)
+        selectedSolutions.filter(
+          (item) => item !== value
+        )
       );
     } else {
-      setSelectedSolutions([...selectedSolutions, value]);
+      setSelectedSolutions([
+        ...selectedSolutions,
+        value,
+      ]);
     }
   };
 
-  return (
-    <main className="min-h-screen bg-[#020617] text-white">
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_50%)]" />
+  // ======================================
+  // EMAIL SUBMIT
+  // ======================================
+ const handleSubmit = (
+  e: React.FormEvent
+) => {
+  e.preventDefault();
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
+  const subject =
+    "New Quote Request - OMR India";
+
+  const body = `
+Name: ${form.name}
+
+Organization: ${form.organization}
+
+Email: ${form.email}
+
+Phone: ${form.phone}
+
+Industry:
+${selectedIndustry}
+
+Services:
+${selectedSolutions.join(", ")}
+
+Requirements:
+${form.message}
+`;
+
+  const mailtoUrl = `mailto:info@omr.in?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+
+  // OPEN EMAIL CLIENT
+  window.location.href = mailtoUrl;
+
+  // SUCCESS MESSAGE
+  // alert(
+  //   "Email draft opened successfully. Please click Send in your email app."
+  // );
+
+  // RESET FORM
+  setForm({
+    name: "",
+    organization: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  setSelectedIndustry("");
+  setSelectedSolutions([]);
+};
+
+  // ======================================
+  // WHATSAPP
+  // ======================================
+  const handleWhatsApp = () => {
+    const phoneNumber = "919810392402";
+
+    const message = `
+Hello OMR India,
+
+Name: ${form.name}
+Organization: ${form.organization}
+Email: ${form.email}
+Phone: ${form.phone}
+
+Industry:
+${selectedIndustry}
+
+Required Services:
+${selectedSolutions.join(", ")}
+
+Project Requirements:
+${form.message}
+`;
+
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(url, "_blank");
+  };
+
+  return (
+    <main className="bg-background text-foreground">
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-border">
+        <div className="absolute inset-0 bg-grid-slate-100/[0.4] bg-[size:40px_40px]" />
+
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-primary/10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-6 py-28 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-300 backdrop-blur">
+            <div className="mb-6 inline-flex items-center rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm">
               Enterprise OMR Solutions
             </div>
 
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Get a Custom Quote
+            <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+              Get a Custom
+              <span className="text-primary">
+                {" "}
+                Quote
+              </span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
-              Looking for a complete OMR solution for examinations, surveys,
-              recruitment or enterprise workflows? Share your requirements and
-              our team will provide a customized quotation tailored to your
+            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-muted-foreground">
+              Looking for a complete OMR
+              solution for examinations,
+              surveys, recruitment or
+              enterprise workflows? Share
+              your requirements and our team
+              will provide a customized
+              quotation tailored to your
               operational needs.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Form Section */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      {/* FORM */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-          {/* Form */}
-          <div className="overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] p-8 shadow-2xl backdrop-blur">
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold text-white">
+          {/* LEFT */}
+          <div className="overflow-hidden rounded-[36px] border border-border bg-card p-8 shadow-xl">
+            <div className="mb-10">
+              <h2 className="text-4xl font-bold">
                 Request a Quote
               </h2>
 
-              <p className="mt-3 text-slate-400">
-                Fill in your details and we’ll get back to you with the best
-                OMR solution for your organization.
+              <p className="mt-4 text-muted-foreground">
+                Fill in your details and
+                we’ll recommend the ideal OMR
+                workflow solution.
               </p>
             </div>
 
-            <form className="space-y-6">
-              {/* Name */}
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-8"
+            >
+              {/* NAME */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-300">
+                <label className="mb-3 block text-sm font-medium text-foreground">
                   Full Name
                 </label>
 
                 <input
                   type="text"
+                  required
+                  value={form.name}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      name:
+                        e.target.value,
+                    })
+                  }
                   placeholder="Enter your name"
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                  className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none transition focus:border-primary"
                 />
               </div>
 
-              {/* Organization */}
+              {/* ORG */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-300">
+                <label className="mb-3 block text-sm font-medium text-foreground">
                   Organization / Institute
                 </label>
 
                 <input
                   type="text"
+                  required
+                  value={form.organization}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      organization:
+                        e.target.value,
+                    })
+                  }
                   placeholder="Organization name"
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                  className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none transition focus:border-primary"
                 />
               </div>
 
-              {/* Email + Phone */}
+              {/* EMAIL + PHONE */}
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-300">
+                  <label className="mb-3 block text-sm font-medium text-foreground">
                     Email Address
                   </label>
 
                   <input
                     type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        email:
+                          e.target.value,
+                      })
+                    }
                     placeholder="you@example.com"
-                    className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                    className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none transition focus:border-primary"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-300">
+                  <label className="mb-3 block text-sm font-medium text-foreground">
                     Phone Number
                   </label>
 
                   <input
                     type="tel"
+                    required
+                    value={form.phone}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        phone:
+                          e.target.value,
+                      })
+                    }
                     placeholder="+91 9876543210"
-                    className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                    className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none transition focus:border-primary"
                   />
                 </div>
               </div>
 
-              {/* Industry */}
+              {/* INDUSTRIES */}
               <div>
-                <label className="mb-4 block text-sm font-medium text-slate-300">
+                <label className="mb-4 block text-sm font-medium text-foreground">
                   Select Industry
                 </label>
 
                 <div className="grid gap-4 md:grid-cols-3">
                   {industries.map((industry) => {
-                    const Icon = industry.icon;
+                    const Icon =
+                      industry.icon;
+
+                    const active =
+                      selectedIndustry ===
+                      industry.title;
 
                     return (
                       <button
-                        type="button"
                         key={industry.title}
-                        className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-5 text-center transition hover:border-white/20 hover:bg-white/10"
+                        type="button"
+                        onClick={() =>
+                          setSelectedIndustry(
+                            industry.title
+                          )
+                        }
+                        className={`rounded-2xl border p-5 transition ${
+                          active
+                            ? "border-primary bg-primary/5"
+                            : "border-border bg-background hover:border-primary/40"
+                        }`}
                       >
-                        <Icon className="h-8 w-8 text-white" />
+                        <div className="flex flex-col items-center text-center">
+                          <div
+                            className={`flex h-14 w-14 items-center justify-center rounded-2xl ${
+                              active
+                                ? "bg-primary text-primary-foreground"
+                                : "bg-muted"
+                            }`}
+                          >
+                            <Icon className="h-7 w-7" />
+                          </div>
 
-                        <span className="mt-3 text-sm font-medium text-slate-300">
-                          {industry.title}
-                        </span>
+                          <span className="mt-4 text-sm font-medium">
+                            {industry.title}
+                          </span>
+                        </div>
                       </button>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Solutions */}
+              {/* SERVICES */}
               <div>
-                <label className="mb-4 block text-sm font-medium text-slate-300">
+                <label className="mb-4 block text-sm font-medium text-foreground">
                   Required Services
                 </label>
 
                 <div className="grid gap-4 md:grid-cols-2">
-                  {solutions.map((solution) => (
-                    <label
-                      key={solution}
-                      className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/10"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedSolutions.includes(solution)}
-                        onChange={() => handleCheckbox(solution)}
-                        className="h-4 w-4 rounded border-white/20 bg-transparent"
-                      />
+                  {solutions.map(
+                    (solution) => (
+                      <label
+                        key={solution}
+                        className={`flex cursor-pointer items-center gap-3 rounded-2xl border p-4 transition ${
+                          selectedSolutions.includes(
+                            solution
+                          )
+                            ? "border-primary bg-primary/5"
+                            : "border-border bg-background hover:border-primary/40"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedSolutions.includes(
+                            solution
+                          )}
+                          onChange={() =>
+                            handleCheckbox(
+                              solution
+                            )
+                          }
+                          className="h-4 w-4"
+                        />
 
-                      <span className="text-sm text-slate-300">
-                        {solution}
-                      </span>
-                    </label>
-                  ))}
+                        <span className="text-sm">
+                          {solution}
+                        </span>
+                      </label>
+                    )
+                  )}
                 </div>
               </div>
 
-              {/* Message */}
+              {/* MESSAGE */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-300">
+                <label className="mb-3 block text-sm font-medium text-foreground">
                   Project Requirements
                 </label>
 
                 <textarea
                   rows={6}
+                  required
+                  value={form.message}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      message:
+                        e.target.value,
+                    })
+                  }
                   placeholder="Tell us about your examination, survey or OMR workflow requirements..."
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none backdrop-blur placeholder:text-slate-500 focus:border-white/20"
+                  className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none transition focus:border-primary"
                 />
               </div>
 
-              {/* Submit */}
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-4 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
-              >
-                Submit Quote Request
-                <ArrowRight className="h-4 w-4" />
-              </button>
+              {/* BUTTONS */}
+              <div className="flex flex-wrap gap-4">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="inline-flex items-center gap-2 rounded-2xl bg-primary px-6 py-4 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
+                >
+                  {loading
+                    ? "Submitting..."
+                    : "Submit Quote Request"}
+
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  className="inline-flex items-center gap-2 rounded-2xl border border-border bg-background px-6 py-4 text-sm font-semibold transition hover:bg-muted"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp Inquiry
+                </button>
+              </div>
             </form>
           </div>
 
-          {/* Sidebar */}
+          {/* RIGHT */}
           <div className="space-y-6">
-            {/* Why Choose */}
-            <div className="rounded-[32px] border border-white/10 bg-white/[0.03] p-8 backdrop-blur">
-              <h3 className="text-2xl font-bold text-white">
+            {/* WHY */}
+            <div className="rounded-[36px] border border-border bg-card p-8 shadow-sm">
+              <h3 className="text-2xl font-bold">
                 Why MarkReader?
               </h3>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-8 space-y-5">
                 {[
                   "High-Speed OMR Processing",
                   "Enterprise Grade Accuracy",
@@ -245,52 +467,68 @@ export default function GetQuotePage() {
                     key={item}
                     className="flex items-start gap-3"
                   >
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 text-white" />
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
 
-                    <p className="text-sm text-slate-400">{item}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {item}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Contact */}
-            <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-slate-900 to-black p-8 shadow-2xl">
-              <h3 className="text-2xl font-bold text-white">
+            {/* CONTACT */}
+            <div className="overflow-hidden rounded-[36px] bg-primary p-8 text-primary-foreground shadow-xl">
+              <h3 className="text-2xl font-bold">
                 Contact Information
               </h3>
 
-              <div className="mt-8 space-y-5">
+              <div className="mt-8 space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
-                    <Phone className="h-5 w-5 text-white" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-foreground/10">
+                    <Phone className="h-5 w-5" />
                   </div>
 
                   <div>
-                    <p className="text-sm text-slate-500">Phone</p>
-                    <p className="mt-1 font-medium text-white">
-                      +91-9810392402, +91-9971543678
+                    <p className="text-sm text-primary-foreground/70">
+                      Phone
+                    </p>
+
+                    <p className="mt-1 font-medium">
+                      +91-9810392402
+                    </p>
+
+                    <p className="font-medium">
+                      +91-9971543678
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
-                    <Mail className="h-5 w-5 text-white" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-foreground/10">
+                    <Mail className="h-5 w-5" />
                   </div>
 
                   <div>
-                    <p className="text-sm text-slate-500">Email</p>
-                    <p className="mt-1 font-medium text-white">
+                    <p className="text-sm text-primary-foreground/70">
+                      Email
+                    </p>
+
+                    <p className="mt-1 font-medium">
                       info@omr.in
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
-                <p className="text-sm leading-7 text-slate-400">
-                  Our team will analyze your requirements and provide a tailored
-                  quotation including hardware, software and workflow solutions.
+              <div className="mt-8 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/10 p-5">
+                <p className="text-sm leading-7 text-primary-foreground/80">
+                  Our experts will analyze
+                  your requirements and share
+                  the best OMR hardware,
+                  software and workflow
+                  solution for your
+                  organization.
                 </p>
               </div>
             </div>

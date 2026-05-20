@@ -265,7 +265,7 @@ ${form.message}
                   </p>
 
                   <p className="text-slate-600">
-                    9:00 AM - 6:00 PM
+                    10:00 AM - 8:00 PM
                   </p>
                 </div>
               </div>

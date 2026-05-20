@@ -1,16 +1,7 @@
 // app/products/page.tsx
-import { ArrowDown } from "lucide-react";
 
-
+import { ArrowDown, ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ScanSearch,
-  Database,
-  BarChart3,
-  FileSpreadsheet,
-  CheckCircle2,
-} from "lucide-react";
 
 const products = [
   {
@@ -54,72 +45,59 @@ const products = [
   },
 ];
 
-const solutions = [
-  {
-    title: "OMR Sheet Designing",
-    description:
-      "Custom-designed OMR sheets optimized for exams, surveys and enterprise workflows.",
-    icon: FileSpreadsheet,
-  },
-  {
-    title: "Scanning & Processing",
-    description:
-      "High-speed and accurate OMR scanning infrastructure for large-scale operations.",
-    icon: ScanSearch,
-  },
-  {
-    title: "Data Management",
-    description:
-      "Secure processing, validation and export of collected OMR data.",
-    icon: Database,
-  },
-  {
-    title: "Analytics & Reporting",
-    description:
-      "Generate reports, analytics and insights with automated result processing.",
-    icon: BarChart3,
-  },
-];
-
 export default function ProductsPage() {
   return (
-    <main className="bg-white text-slate-900">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-slate-200">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100" />
+    <main className="bg-background text-foreground">
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-border bg-background">
+        {/* GRID */}
+        <div className="absolute inset-0 bg-grid-slate-100/[0.4] bg-[size:40px_40px]" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        {/* GLOW */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-primary/10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-6 py-14 lg:px-8">
           <div className="max-w-4xl">
-            <div className="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1 text-sm font-medium text-slate-600 shadow-sm">
+            <div className="inline-flex items-center rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm">
               MarkReader Product Portfolio
             </div>
 
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
-              Professional OMR Scanners & Evaluation Solutions
+            <h1 className="mt-8 text-5xl font-bold tracking-tight sm:text-7xl leading-tight">
+              Professional OMR
+              <span className="text-primary">
+                {" "}
+                Scanners
+              </span>
             </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-              Explore high-performance MarkReader OMR scanners built for
-              educational institutions, recruitment agencies, enterprises and
-              government examination workflows.
+            <p className="mt-8 max-w-3xl text-lg leading-8 text-muted-foreground">
+              Explore high-performance
+              MarkReader OMR scanners built
+              for educational institutions,
+              recruitment agencies,
+              enterprises and government
+              examination workflows.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               <Link
-  href="#products-grid"
-  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
->
-  Explore Products
-  <ArrowDown className="h-4 w-4" />
-</Link>
+                href="#products-grid"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
+              >
+                Explore Products
+                <ArrowDown className="h-4 w-4" />
+              </Link>
 
-              <button className="rounded-xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+              <Link
+                href="/contact"
+                className="rounded-xl border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-muted"
+              >
                 Request Consultation
-              </button>
+              </Link>
             </div>
           </div>
 
-          {/* Stats */}
+          {/* STATS */}
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               "High-Speed Processing",
@@ -129,12 +107,12 @@ export default function ProductsPage() {
             ].map((item) => (
               <div
                 key={item}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="rounded-2xl border border-border bg-card p-5 shadow-sm"
               >
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-slate-900" />
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
 
-                  <p className="text-sm font-semibold text-slate-700">
+                  <p className="text-sm font-semibold text-foreground">
                     {item}
                   </p>
                 </div>
@@ -144,139 +122,125 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section  id="products-grid" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      {/* PRODUCTS */}
+      <section
+        id="products-grid"
+        className="mx-auto max-w-7xl px-6 py-24 lg:px-8"
+      >
         <div className="max-w-3xl">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900">
+          <span className="text-primary uppercase tracking-[0.2em] text-sm font-semibold">
+            Explore Products
+          </span>
+
+          <h2 className="mt-4 text-4xl font-bold tracking-tight">
             OMR Scanner Products
           </h2>
 
-          <p className="mt-4 text-lg text-slate-600">
-            Reliable and scalable OMR hardware solutions for examination,
-            survey and data collection workflows.
+          <p className="mt-5 text-lg text-muted-foreground">
+            Reliable and scalable OMR
+            hardware solutions for
+            examination, survey and data
+            collection workflows.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-3">
-          {products.map((product) => (
-            <div
-              key={product.slug}
-              className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
-              {/* Product Image */}
-              <div className="overflow-hidden border-b border-slate-100">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="h-64 w-full object-cover transition duration-500 group-hover:scale-105"
-                />
-              </div>
+        <div className="mt-16 grid gap-8 lg:grid-cols-3">
+  {products.map((product) => (
+    <Link
+      key={product.slug}
+      href={`/products/${product.slug}`}
+      className="group overflow-hidden rounded-[32px] border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
+    >
+      {/* IMAGE */}
+      <div className="relative overflow-hidden border-b border-border">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+        />
 
-              {/* Product Content */}
-              <div className="p-8">
-                <p className="text-sm font-medium uppercase tracking-wide text-slate-500">
-                  {product.category}
-                </p>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-                <h3 className="mt-2 text-2xl font-bold text-slate-900">
-                  {product.name}
-                </h3>
-
-                <p className="mt-4 leading-7 text-slate-600">
-                  {product.description}
-                </p>
-
-                <div className="mt-6 space-y-3">
-                  {product.highlights.map((highlight) => (
-                    <div
-                      key={highlight}
-                      className="flex items-center gap-3"
-                    >
-                      <CheckCircle2 className="h-5 w-5 text-slate-900" />
-
-                      <span className="text-sm font-medium text-slate-700">
-                        {highlight}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  href={`/products/${product.slug}`}
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 transition hover:gap-3"
-                >
-                  View Product
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-          ))}
+        <div className="absolute bottom-5 left-5">
+          <span className="rounded-full bg-white/90 backdrop-blur px-4 py-2 text-xs font-semibold text-primary shadow-lg">
+            {product.category}
+          </span>
         </div>
-      </section>
+      </div>
 
-      {/* Solutions Section */}
-      <section className="bg-slate-50 py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900">
-              Complete OMR Ecosystem
-            </h2>
+      {/* CONTENT */}
+      <div className="p-8">
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="text-2xl font-bold tracking-tight group-hover:text-primary transition">
+            {product.name}
+          </h3>
 
-            <p className="mt-4 text-lg text-slate-600">
-              Beyond hardware, MarkReader provides a complete OMR workflow
-              solution for educational and enterprise environments.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {solutions.map((solution) => {
-              const Icon = solution.icon;
-
-              return (
-                <div
-                  key={solution.title}
-                  className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100">
-                    <Icon className="h-7 w-7 text-slate-900" />
-                  </div>
-
-                  <h3 className="mt-6 text-xl font-semibold text-slate-900">
-                    {solution.title}
-                  </h3>
-
-                  <p className="mt-3 leading-7 text-slate-600">
-                    {solution.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+          <ArrowRight className="h-5 w-5 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary" />
         </div>
+
+        <p className="mt-5 leading-7 text-muted-foreground">
+          {product.description}
+        </p>
+
+        {/* HIGHLIGHTS */}
+        <div className="mt-8 space-y-4">
+          {product.highlights.map(
+            (highlight) => (
+              <div
+                key={highlight}
+                className="flex items-center gap-3"
+              >
+                <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+
+                <span className="text-sm font-medium text-muted-foreground">
+                  {highlight}
+                </span>
+              </div>
+            )
+          )}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-primary transition group-hover:gap-3">
+          View Product
+          <ArrowRight className="h-4 w-4" />
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
       </section>
 
       {/* CTA */}
-      <section className="pb-20 pt-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="overflow-hidden rounded-[32px] bg-slate-900 px-8 py-16 text-white lg:px-16">
+      <section className="border-t border-border bg-muted/30">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+          <div className="overflow-hidden rounded-[40px] bg-primary px-8 py-16 text-primary-foreground lg:px-16">
             <div className="grid items-center gap-10 lg:grid-cols-2">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight">
-                  Need help choosing the right OMR solution?
+                <h2 className="text-4xl font-bold tracking-tight leading-tight">
+                  Need help choosing the
+                  right OMR solution?
                 </h2>
 
-                <p className="mt-4 text-lg text-slate-300">
-                  Our team can help you select the ideal MarkReader scanner and
-                  workflow solution based on your processing requirements.
+                <p className="mt-5 text-lg text-primary-foreground/80">
+                  Our team can help you
+                  select the ideal
+                  MarkReader scanner and
+                  workflow solution based on
+                  your processing
+                  requirements.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-4 lg:justify-end">
-                <button className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100">
+                <Link
+                  href="/contact"
+                  className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-primary transition hover:bg-white/90"
+                >
                   Contact Sales
-                </button>
+                </Link>
 
-                <button className="rounded-xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20">
+                <button className="rounded-xl border border-primary-foreground/20 bg-primary-foreground/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-primary-foreground/20">
                   Schedule Demo
                 </button>
               </div>
