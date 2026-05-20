@@ -1,54 +1,48 @@
-import { NextResponse } from "next/server";
-import { Resend } from "resend";
-import { supabase } from "@/lib/supabase";
+// app/api/contact/route.ts
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const { name, email, message } = await req.json();
 
-    // Save to database
-    await supabase.from("contacts").insert([
-      {
-        name: body.name,
-        email: body.email,
-        phone: body.phone,
-        service: body.service,
-        message: body.message,
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
-    ]);
+    });
 
-    // Send email
-    await resend.emails.send({
-      from: "OMR India Website <noreply@omr.in>",
-      to: "info@omr.in",
-      replyTo: body.email,
-      subject: `New Lead - ${body.name}`,
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: `New Contact Message from ${name}`,
       html: `
-    <h2>New Contact Lead</h2>
+        <h2>New Inquiry</h2>
 
-    <p><strong>Name:</strong> ${body.name}</p>
-    <p><strong>Email:</strong> ${body.email}</p>
-    <p><strong>Phone:</strong> ${body.phone}</p>
-    <p><strong>Service:</strong> ${body.service}</p>
-    <p><strong>Message:</strong> ${body.message}</p>
-  `,
+        <p><strong>Name:</strong> ${name}</p>
+
+        <p><strong>Email:</strong> ${email}</p>
+
+        <p><strong>Message:</strong></p>
+
+        <p>${message}</p>
+      `,
     });
 
     return NextResponse.json({
       success: true,
+      message: "Email sent successfully",
     });
   } catch (error) {
-    console.error(error);
-
     return NextResponse.json(
       {
         success: false,
+        message: "Failed to send email",
       },
-      {
-        status: 500,
-      },
+      { status: 500 }
     );
   }
 }
