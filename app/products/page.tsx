@@ -2,48 +2,7 @@
 
 import { ArrowDown, ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-
-const products = [
-  {
-    slug: "axm960",
-    name: "MarkReader AXM960",
-    category: "Professional OMR Scanner",
-    description:
-      "High-speed OMR scanner designed for examination processing, surveys, recruitment workflows and enterprise data collection.",
-    image: "https://omr.in/images/Mark-Reader-AXM960.jpg",
-    highlights: [
-      "Automatic Sheet Feeding",
-      "High Accuracy Detection",
-      "Bulk OMR Processing",
-    ],
-  },
-  {
-    slug: "axm950",
-    name: "MarkReader AXM950",
-    category: "Enterprise OMR Scanner",
-    description:
-      "Reliable and scalable OMR processing solution optimized for institutions and assessment centers.",
-    image: "https://omr.in/images/Mark-Reader-AXM960.jpg",
-    highlights: [
-      "Fast Batch Processing",
-      "Easy Maintenance",
-      "Survey & Exam Ready",
-    ],
-  },
-  {
-    slug: "axm900",
-    name: "MarkReader AXM900",
-    category: "Compact OMR Solution",
-    description:
-      "Compact desktop OMR scanner suitable for schools, coaching institutes and small-scale evaluations.",
-    image: "https://omr.in/images/Mark-Reader-AXM960.jpg",
-    highlights: [
-      "Compact Design",
-      "Quick Setup",
-      "Reliable Performance",
-    ],
-  },
-];
+import { products } from '@/lib/constants'
 
 export default function ProductsPage() {
   return (

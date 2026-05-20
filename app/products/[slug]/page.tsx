@@ -227,12 +227,12 @@ const industries = [
   },
 ];
 
-export default async function ProductDetailsPage({
+export default function ProductDetailsPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const product =
     products[slug as keyof typeof products];
