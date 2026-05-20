@@ -70,7 +70,7 @@ export default function ContactPage() {
   // WHATSAPP
   // =========================================
   const handleWhatsApp = () => {
-    const phoneNumber = "919999999999";
+    const phoneNumber = "919810392402";
 
     const message = `
 Hello OMR India,
@@ -125,7 +125,7 @@ ${form.message}
             {/* QUICK ACTIONS */}
             <div className="flex flex-wrap gap-4 mt-10">
               <a
-                href="tel:+919999999999"
+                href="tel:+919810392402"
                 className="bg-white text-slate-900 hover:bg-slate-200 px-6 py-4 rounded-2xl font-semibold transition flex items-center gap-2"
               >
                 <Phone className="w-5 h-5" />
