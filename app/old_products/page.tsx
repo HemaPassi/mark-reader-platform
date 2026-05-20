@@ -1,4 +1,4 @@
-import List from '@/components/ui/molecules/list'
+//import List from '@/components/ui/molecules/list'
 
 
 export default async function Products() {
@@ -6,7 +6,7 @@ export default async function Products() {
     const products = await res.json()
 
     return( <div className='flex flex-col gap-5' > 
-        <List data={products} />
+        {/* <List data={products} /> */}
     </div>
     )
 
