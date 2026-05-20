@@ -1,35 +1,22 @@
-import Hero from '@/components/sections/hero-section'
-import WorkFlow from '@/components/sections/workflow-section'
-import Services from '@/components/sections/services-section'
-import BookNow from  '@/components/sections/book-now'
-import Footer from '@/components/sections/footer'
-import Header from "@/components/sections/header"
+import Link from "next/link";
+import Hero from "@/components/sections/hero-section";
+import WorkFlow from "@/components/sections/workflow-section";
+import Services from "@/components/sections/services-section";
+import BookNow from "@/components/sections/book-now";
+import About from "@/components/sections/about-section";
+import Strength from "@/components/sections/strength-section";
+import Testimonials from '@/components/sections/testimonial'
 
-
-export default function MarkReaderHomepage() {
-  
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.25),transparent_40%)]" />
-
-      {/* Navbar */}
-      <Header/>
-
-      {/* Hero */}
+    <main className="bg-white text-slate-900 overflow-hidden">
       <Hero />
-
-      {/* Workflow */}
-    <WorkFlow />
-
-      {/* Services */}
-      <Services  />
-
-      {/* CTA */}
+      <About />
+      <WorkFlow />
+      <Services />
+      <Strength />
+      <Testimonials />
       <BookNow />
-
-      {/* Footer */}
-      <Footer />
     </main>
-  )
+  );
 }
