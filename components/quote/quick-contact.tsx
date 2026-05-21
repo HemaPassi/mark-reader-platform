@@ -26,7 +26,7 @@ const contactOptions = [
     description:
       'Get faster responses for enterprise inquiries and OMR consultations.',
     value: 'Instant Business Chat',
-    href: 'https://wa.me/919999999999',
+    href: 'https://wa.me/919810392402',
     icon: MessageCircle,
     color:
       'from-green-500/10 to-emerald-500/10 border-green-500/20',
