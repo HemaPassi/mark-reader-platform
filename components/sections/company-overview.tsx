@@ -1,4 +1,28 @@
-import {highlights} from '@/lib/constants'
+
+import {overview } from '@/data/overview.json'
+import {highlights} from '@/data/highlights.json'
+
+import  {
+  ShieldCheck,
+  Workflow,
+  LucideIcon,
+} from 'lucide-react'
+
+import { iconMapper } from '@/lib/iconMapper'
+
+const items: {
+  title: string
+  icon: LucideIcon
+}[] = [
+  {
+    title: 'Security',
+    icon: iconMapper.ShieldCheck,
+  },
+  {
+    title: 'Automation',
+    icon: iconMapper.Workflow,
+  },
+]
 
 export default function CompanyOverview() {
     {/* Company Overview */}
@@ -10,30 +34,24 @@ export default function CompanyOverview() {
                   <div className="mx-auto max-w-4xl text-center">
                     {/* Badge */}
                     <div className="inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-300">
-                      About OMR India
+                     {overview.Badge}
                     </div>
         
                     {/* Heading */}
                     <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight md:text-5xl xl:text-6xl">
-                      Trusted Enterprise OMR &
+                      {overview.Heading_main}
                       <span className="block bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
-                        Assessment Infrastructure
+                        {overview.Heading}
                       </span>
                     </h1>
         
                     {/* Description */}
                     <p className="mt-8 text-lg leading-8 text-slate-300">
-                      OMR India delivers intelligent assessment processing,
-                      OMR sheet designing, scanning, analytics and workflow
-                      automation solutions for institutions, universities,
-                      enterprises and government organizations across India.
+                      {overview.Description_main}
                     </p>
         
                     <p className="mt-6 text-lg leading-8 text-slate-400">
-                      With years of expertise in Optical Mark Recognition (OMR)
-                      technologies, we provide scalable and reliable infrastructure
-                      for high-volume examinations, surveys, recruitment assessments
-                      and document processing workflows.
+                      {overview.Description}
                        {/* :contentReference[oaicite:0]{index=0} */}
                     </p>
                   </div>
@@ -56,7 +74,11 @@ export default function CompanyOverview() {
                             <div className="flex items-center justify-between">
                               {/* Icon */}
                               <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-500/10 bg-blue-500/10">
-                                <Icon className="h-6 w-6 text-blue-300" />
+                               
+               {Icon && (
+              // <Icon className="h-6 w-6 text-blue-300" />
+              <Icon />
+            )}
                               </div>
         
                               {/* Number */}

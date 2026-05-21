@@ -1,0 +1,91 @@
+{
+  "stats": [
+    {
+    "value": "24+",
+    "label": "Years Experience"
+  },
+  {
+    "value": "10M+",
+    "label": "Sheets Processed"
+  },
+  {
+    "value": "500+",
+    "label": "Enterprise Clients"
+  },
+  {
+    "value": "99.9%",
+    "label": "Processing Accuracy"
+  }
+  ],
+
+  
+  "features": [
+    "99.9% Processing Accuracy",
+    "Advanced OMR Infrastructure",
+    "Enterprise Security Standards",
+    "Bulk OMR Processing",
+    "AI-Powered Validation",
+    "Scalable Assessment Solutions"
+  ],
+
+  "bottomPoints": [
+    "Enterprise Reliability",
+    "High Accuracy Processing",
+    "Government Ready Infrastructure"
+  ],
+
+  "whyChoose" : [
+  {
+    "title": "Expertise & Experience",
+    "description":
+      "Decades of experience delivering enterprise-grade OMR infrastructure.",
+    "icon": "Award"
+  },
+  {
+    "title": "Advanced Technology",
+    "description":
+      "Modern OMR software, scanners and automation built for scalability.",
+    "icon": "Cpu"
+  },
+  {
+    "title": "Customized Solutions",
+    "description":
+      "Tailored OMR workflows and infrastructure aligned with your operations.",
+    "icon": "Workflow"
+  },
+  {
+    "title": "Commitment to Quality",
+    "description":
+      "Rigorous validation and quality assurance for accurate results.",
+    "icon": "ShieldCheck"
+  }
+],
+
+    "omrTypes" : [
+  {
+    "title": "Examination Sheets",
+    "description":
+      "OMR answer sheets designed for schools, universities and competitive examinations.",
+    "icon": "FileText"
+  },
+  {
+    "title": "Survey Sheets",
+    "description":
+      "Enterprise survey forms enabling accurate large-scale data collection.",
+    "icon": "ClipboardList"
+  },
+  {
+    "title": "Feedback Sheets",
+    "description":
+      "Structured feedback forms for organizations, events and institutions.",
+    "icon": "Users"
+  },
+  {
+    "title": "Attendance Sheets",
+    "description":
+      "Automated attendance management solutions for training and education.",
+    "icon": "CheckCircle2"
+  }
+]
+}
+  

@@ -1,0 +1,40 @@
+{
+    "highlights" : [
+  {
+    "title": "OMR Sheet Designing",
+    "description":
+      "Custom-designed OMR sheets optimized for examinations, surveys, recruitment and enterprise data collection workflows.",
+    "icon": "ScanSearch"
+  },
+  {
+    "title": "Scanning & Processing",
+    "description":
+      "High-speed and accurate OMR scanning infrastructure capable of processing large-scale assessment operations.",
+    "icon": "Database"
+  },
+  {
+    "title": "Analytics & Reporting",
+    "description":
+      "Intelligent analytics dashboards and automated reporting systems for real-time decision making.",
+    "icon": "BarChart3"
+  },
+  {
+    "title": "Enterprise Security",
+    "description":
+      "Reliable and secure processing workflows designed for institutions, enterprises and government organizations.",
+    "icon": "ShieldCheck"
+  },
+  {
+    "title": "Automation Infrastructure",
+    "description":
+      "Scalable workflow automation reducing manual effort while improving operational efficiency and accuracy.",
+    "icon": "Cpu"
+  },
+  {
+    "title": "Institutional Trust",
+    "description":
+      "Trusted assessment and document processing solutions serving universities, enterprises and public sector clients.",
+    "icon": "Building2"
+  }
+]
+}

@@ -1,216 +1,334 @@
+'use client'
+
+import Image from 'next/image'
 import Link from 'next/link'
-import  {stats } from '@/lib/constants'
+import {
+  ArrowRight,
+  BarChart3,
+  CheckCircle2,
+  Database,
+  Globe2,
+  Mail,
+  MapPin,
+  Phone,
+  ScanLine,
+  ShieldCheck,
+} from 'lucide-react'
+
+const quickLinks = [
+  {
+    label: 'Home',
+    href: '/',
+  },
+  {
+    label: 'About',
+    href: '/about',
+  },
+  {
+    label: 'Services',
+    href: '/services',
+  },
+  {
+    label: 'Products',
+    href: '/products',
+  },
+  {
+    label: 'Workflow',
+    href: '/workflow',
+  },
+  {
+    label: 'Contact',
+    href: '/contact',
+  },
+]
+
+const services = [
+  'OMR Software',
+  'OMR Scanning',
+  'OMR Evaluation',
+  'OMR Sheet Design',
+  'OMR Processing',
+  'Assessment Analytics',
+]
+
+const stats = [
+  {
+    value: '99.9%',
+    label: 'Processing Accuracy',
+  },
+  {
+    value: '24+',
+    label: 'Years Experience',
+  },
+  {
+    value: '1M+',
+    label: 'Sheets Processed',
+  },
+  {
+    value: 'Enterprise',
+    label: 'Scale Infrastructure',
+  },
+]
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-slate-950">
-      {/* Glow Effects */}
-      <div className="orange-glow bottom-[-220px] left-[-120px]" />
-
-      <div className="absolute inset-0 premium-grid opacity-20" />
+    <footer
+      className="relative overflow-hidden border-t border-white/10 bg-[#020617] text-white"
+      role="contentinfo"
+    >
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(249,115,22,0.08),transparent_30%)]" />
 
       <div className="relative z-10">
-        {/* CTA Section */}
-        <div className="max-w-7xl mx-auto px-6 pt-20">
-          <div className="glass-card rounded-[2.5rem] p-10 lg:p-14 overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent" />
-
-            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
-              <div className="max-w-2xl">
-                <p className="uppercase tracking-[0.35em] text-sm text-orange-400 font-semibold">
-                  Ready To Modernize?
-                </p>
-
-                <h2 className="mt-5 text-4xl lg:text-5xl font-bold leading-tight text-white">
-                  Transform Your OMR &
-                  <br />
-                  Document Processing Workflow
-                </h2>
-
-                <p className="mt-6 text-lg leading-8 text-slate-300">
-                  Enterprise-grade OMR scanning, document intelligence, and
-                  AI-powered automation solutions designed for modern
-                  institutions and organizations.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/get-quote"
-                  className="primary-btn px-8 py-4 rounded-full text-white font-semibold">
-                  Get Quote
-                </Link>
-
-                <Link
-                  href={`/contact`}
-                  className="glass-card px-8 py-4 rounded-full text-white font-semibold hover:border-orange-500/30 transition-all">
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Footer */}
-        <div className="max-w-7xl mx-auto px-6 py-20">
-          <div className="grid lg:grid-cols-4 gap-14">
-            {/* Brand */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-2xl">
-                  <span className="text-white text-2xl font-bold">M</span>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold text-white">
-                    Mark Reader
-                  </h3>
-
-                  <p className="text-sm tracking-[0.3em] uppercase text-slate-500 mt-1">
-                    OMR Intelligence Platform
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-8 text-slate-400 leading-8 max-w-xl text-lg">
-                Advanced OMR and document intelligence solutions helping
-                enterprises, educational institutions, and government
-                organizations modernize assessment and processing workflows.
-              </p>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
-                {stats.map((item) => (
-                  <div
-                    key={item.label}
-                    className="glass-card rounded-2xl p-5"
-                  >
-                    <h4 className="text-2xl font-bold text-white">
-                      {item.value}
-                    </h4>
-
-                    <p className="text-sm text-slate-400 mt-2">
-                      {item.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Navigation */}
-            <div>
-              <h4 className="text-white font-semibold text-lg">
-                Quick Links
-              </h4>
-
-              <div className="mt-8 flex flex-col gap-5 text-slate-400">
+        {/* MAIN FOOTER */}
+        <section className="py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-16 lg:grid-cols-12">
+              {/* BRAND */}
+              <div className="lg:col-span-5">
+                {/* LOGO */}
                 <Link
                   href="/"
-                  className="hover:text-orange-400 transition-colors"
+                  aria-label="Mark Reader Home"
+                  className="flex items-center gap-4"
                 >
-                  Home
+                  <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                    <Image
+                      src="/logo.png"
+                      alt="Mark Reader Logo"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div>
+                    <h2 className="text-2xl font-bold text-white">
+                      Mark Reader
+                    </h2>
+
+                    <p className="mt-1 text-xs uppercase tracking-[0.3em] text-slate-500">
+                      Enterprise OMR Platform
+                    </p>
+                  </div>
                 </Link>
 
-                <Link
-                  href="/about"
-                  className="hover:text-orange-400 transition-colors"
-                >
-                  About
-                </Link>
+                {/* DESCRIPTION */}
+                <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-400">
+                  Mark Reader delivers enterprise-grade OMR software, OMR
+                  scanning, OMR evaluation and intelligent assessment
+                  infrastructure for universities, institutions and government
+                  organizations.
+                </p>
 
-                <Link
-                  href="/services"
-                  className="hover:text-orange-400 transition-colors"
-                >
-                  Services
-                </Link>
+                {/* FEATURES */}
+                <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                  {[
+                    {
+                      icon: ScanLine,
+                      label: 'High-Speed OMR Scanning',
+                    },
+                    {
+                      icon: Database,
+                      label: 'Enterprise OMR Processing',
+                    },
+                    {
+                      icon: ShieldCheck,
+                      label: 'Secure Evaluation Systems',
+                    },
+                    {
+                      icon: BarChart3,
+                      label: 'Advanced Assessment Analytics',
+                    },
+                  ].map((item) => {
+                    const Icon = item.icon
 
-                <Link
-                  href="/products"
-                  className="hover:text-orange-400 transition-colors"
-                >
-                  Products
-                </Link>
+                    return (
+                      <div
+                        key={item.label}
+                        className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                      >
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10">
+                          <Icon className="h-5 w-5 text-orange-400" />
+                        </div>
 
-                <Link
-                  href="/workflow"
-                  className="hover:text-orange-400 transition-colors"
-                >
-                  Workflow
-                </Link>
+                        <span className="text-sm text-slate-300">
+                          {item.label}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
 
-                <Link
-                  href="/contact"
-                  className="hover:text-orange-400 transition-colors"
-                >
-                  Contact
-                </Link>
+              {/* QUICK LINKS */}
+              <nav
+                aria-label="Footer Navigation"
+                className="lg:col-span-2"
+              >
+                <h3 className="text-lg font-semibold text-white">
+                  Quick Links
+                </h3>
+
+                <div className="mt-8 flex flex-col gap-5">
+                  {quickLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="text-slate-400 transition-colors hover:text-orange-400"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </nav>
+
+              {/* SERVICES */}
+              <div className="lg:col-span-2">
+                <h3 className="text-lg font-semibold text-white">
+                  Solutions
+                </h3>
+
+                <div className="mt-8 flex flex-col gap-5">
+                  {services.map((item) => (
+                    <p
+                      key={item}
+                      className="text-slate-400"
+                    >
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              {/* CONTACT */}
+              <div className="lg:col-span-3">
+                <h3 className="text-lg font-semibold text-white">
+                  Contact Information
+                </h3>
+
+                <div className="mt-8 space-y-6">
+                  {/* EMAIL */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
+                      <Mail className="h-5 w-5 text-orange-400" />
+                    </div>
+
+                    <div>
+                      <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+                        Email
+                      </p>
+
+                      <a
+                        href="mailto:info@omr.in"
+                        className="mt-2 block text-slate-300 transition hover:text-orange-400"
+                      >
+                        info@omr.in
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* PHONE */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
+                      <Phone className="h-5 w-5 text-orange-400" />
+                    </div>
+
+                    <div>
+                      <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+                        Support
+                      </p>
+
+                      <p className="mt-2 text-slate-300">
+                        Enterprise Consultation Available
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* ADDRESS */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
+                      <MapPin className="h-5 w-5 text-orange-400" />
+                    </div>
+
+                    <div>
+                      <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+                        Solutions
+                      </p>
+
+                      <p className="mt-2 leading-7 text-slate-300">
+                        OMR Software • OMR Evaluation • Enterprise Assessment
+                        Infrastructure
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="mt-10">
+                  <Link
+                    href="/get-quote"
+                    className="inline-flex items-center gap-2 rounded-2xl bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600"
+                  >
+                    Get Enterprise Quote
+
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             </div>
 
-            {/* Contact */}
-            <div>
-              <h4 className="text-white font-semibold text-lg">
-                Contact
-              </h4>
+            {/* STATS */}
+            <section
+              aria-label="Company Statistics"
+              className="mt-20 grid gap-5 border-t border-white/10 pt-12 sm:grid-cols-2 lg:grid-cols-4"
+            >
+              {stats.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-[28px] border border-white/10 bg-white/[0.03] p-6"
+                >
+                  <h4 className="text-3xl font-bold text-white">
+                    {item.value}
+                  </h4>
 
-              <div className="mt-8 space-y-6 text-slate-400">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">
-                    Email
-                  </p>
-
-                  <p className="text-white">
-                    info@omr.in
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">
-                    Support
-                  </p>
-
-                  <p className="text-white">
-                    24/7 Enterprise Support
+                  <p className="mt-3 text-sm text-slate-400">
+                    {item.label}
                   </p>
                 </div>
+              ))}
+            </section>
 
-                <div>
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">
-                    Solutions
-                  </p>
+            {/* BOTTOM */}
+            <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+              <p>
+                © 2026 Mark Reader. All rights reserved.
+              </p>
 
-                  <p className="text-white">
-                    OMR • AI • Automation
-                  </p>
-                </div>
+              <div className="flex flex-wrap items-center gap-6">
+                <Link
+                  href="/privacy-policy"
+                  className="transition hover:text-orange-400"
+                >
+                  Privacy Policy
+                </Link>
+
+                <Link
+                  href="/terms"
+                  className="transition hover:text-orange-400"
+                >
+                  Terms & Conditions
+                </Link>
+
+                <Link
+                  href="/sitemap.xml"
+                  className="transition hover:text-orange-400"
+                >
+                  Sitemap
+                </Link>
               </div>
             </div>
           </div>
-
-          {/* Bottom */}
-          <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
-            <p>
-              © 2026 Mark Reader. All rights reserved.
-            </p>
-
-            <div className="flex items-center gap-8">
-              <Link
-                href="/privacy-policy"
-                className="hover:text-orange-400 transition-colors"
-              >
-                Privacy Policy
-              </Link>
-
-              <Link
-                href="/terms"
-                className="hover:text-orange-400 transition-colors"
-              >
-                Terms
-              </Link>
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </footer>
   )

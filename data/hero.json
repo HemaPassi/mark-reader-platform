@@ -1,0 +1,74 @@
+{
+    "backgroundImage": {
+      "src": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2200&auto=format&fit=crop",
+      "alt": "OMR Enterprise"
+    },
+
+    "badge": "Trusted Since 2002",
+
+    "smallHeading": "OMR India Enterprise Platform",
+
+    "title": {
+      "line1": "Intelligent OMR",
+      "line2": "& Assessment Infrastructure"
+    },
+
+    "description": "Scalable OMR processing, assessment automation, analytics and document digitization solutions for enterprises, universities, institutions and government organizations.",
+
+    "cta": {
+      "primary": {
+        "label": "Book a Demo",
+        "href": "/contact"
+      },
+      "secondary": {
+        "label": "About Company",
+        "href": "/about"
+      }
+    },
+
+    "dashboard": {
+      "header": {
+        "subtitle": "Processing Overview",
+        "title": "Enterprise Dashboard",
+        "status": "Live"
+      },
+
+      "metrics": [
+        {
+          "title": "Documents Processed",
+          "value": "24,891",
+          "progress": 82
+        },
+        {
+          "title": "Scan Accuracy",
+          "value": "99.8%",
+          "progress": 96
+        }
+      ],
+
+      "queue": {
+        "title": "Recent Processing Queue",
+        "updatedText": "Updated now",
+        "items": [
+          {
+            "name": "University Examination Batch",
+            "status": "Completed"
+          },
+          {
+            "name": "Government Recruitment OMR",
+            "status": "Completed"
+          },
+          {
+            "name": "Enterprise Survey Analytics",
+            "status": "Completed"
+          },
+          {
+            "name": "School Assessment Processing",
+            "status": "Completed"
+          }
+        ]
+      },
+
+      "footer": "Trusted enterprise-grade infrastructure for large-scale assessments, evaluations and document workflows."
+    }
+}

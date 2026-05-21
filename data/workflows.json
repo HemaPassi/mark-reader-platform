@@ -1,0 +1,43 @@
+{
+    "workflow" : {
+    "badge": "Enterprise Workflow",
+      "subHeading": "End to End testing",
+    "title": {
+      "line1": "Intelligent OMR Processing",
+      "line2": "Workflow Infrastructure"
+    },
+    "description" : "Streamlined enterprise workflows designed for large-scale examinations, assessments and document intelligence operations.",
+    "data": [
+  {
+    "number": "01",
+    "title": "OMR Data Collection",
+    "description":
+      "Collect examination sheets, surveys and assessment documents through secure enterprise workflows.",
+    "Icon": "Database"
+  },
+  {
+    "number": "02",
+    "title": "Intelligent Scanning",
+    "description":
+      "High-speed OMR scanning with AI-powered validation and precision-based processing infrastructure.",
+    "Icon": "ScanLine"
+  },
+  {
+    "number": "03",
+    "title": "Verification & Evaluation",
+    "description":
+      "Automated validation, quality assurance and result generation with enterprise-grade accuracy.",
+    "Icon": "FileCheck2"
+  },
+  {
+    "number": "04",
+    "title": "Analytics & Reporting",
+    "description":
+      "Generate real-time analytics, dashboards and performance reports for decision-making workflows.",
+    "Icon": "BarChart3"
+  }
+],
+"CTA": "Workflow Step"
+
+}
+}

@@ -1,0 +1,44 @@
+{
+    "services": { 
+    "badge": "Enterprise Services",
+    "subHeading" : "",
+
+    "title": {
+      "line1": "Intelligent OMR &",
+      "line2": "Assessment Solutions"
+    },
+    "description" : "Enterprise-grade OMR processing, assessment automation, document intelligence and analytics infrastructure designed for institutions, enterprises and government organizations.",
+    "data":  [{
+    "title": "OMR Sheets Printing",
+    "slug": "omr-sheets-printing",
+    "description": "Enterprise-grade OMR printing solutions designed for institutions, universities and government organizations.",
+     "CTA": "Learn more",
+    "icon": "Printer"
+  },
+  {
+    "title": "OMR Sheets Scanning",
+    "slug": "omr-sheets-scanning",
+    "description": "High-speed intelligent OMR scanning and processing infrastructure with enterprise-grade accuracy.",
+     "CTA": "Learn more",
+    "icon": "ScanSearch"
+  },
+
+  {
+    "title": "OMR Sheets Designing",
+    "slug": "omr-sheets-designing",
+    "description": "Custom OMR sheet designing services optimized for enterprise assessment workflows.",
+     "CTA": "Learn more",
+    "icon": "FileText"
+  },
+
+  {
+    "title": "Scanner Services",
+    "slug": "scanner-services",
+    "description":
+      "Enterprise document scanning and workflow automation solutions for high-volume operations.",
+    "icon": "ScanLine",
+     "CTA": "Learn more"
+  }
+  ]
+}
+}

@@ -1,515 +1,582 @@
 // app/products/[slug]/page.tsx
 
-import Link from "next/link";
-import Image from "next/image";
-import { notFound } from "next/navigation";
+import Image from 'next/image'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
 
 import {
-  ArrowLeft,
-  CheckCircle2,
-  ScanSearch,
-  Database,
-  BarChart3,
-  GraduationCap,
-  Building2,
-  ClipboardList,
   ArrowRight,
-  Download,
-} from "lucide-react";
+  BarChart3,
+  Building2,
+  CheckCircle2,
+  ClipboardCheck,
+  Cpu,
+  Database,
+  FileText,
+  Layers3,
+  ScanLine,
+  ShieldCheck,
+  Workflow,
+} from 'lucide-react'
 
-const products = {
-  axm960: {
-    name: "MarkReader AXM960",
-    category: "Professional OMR Scanner",
-    brochure: "MarkReader.pdf",
-    image: "https://omr.in/images/Mark-Reader-AXM960.jpg",
-    shortDescription:
-      "High-speed OMR scanner designed for examinations, surveys, recruitment workflows and enterprise data collection.",
-
-    description:
-      "The MarkReader AXM960 is a professional-grade Optical Mark Recognition scanner built for high-volume examination processing and enterprise data collection workflows. It delivers reliable performance, accurate mark detection and scalable OMR processing capabilities.",
-
-    features: [
-      {
-        title: "Automatic Sheet Feeding",
-        description:
-          "Continuous high-speed document feeding for large-scale processing operations.",
-        icon: ScanSearch,
-      },
-      {
-        title: "High Accuracy Detection",
-        description:
-          "Precise bubble and checkbox recognition with optimized OMR algorithms.",
-        icon: CheckCircle2,
-      },
-      {
-        title: "Bulk Data Processing",
-        description:
-          "Efficiently process thousands of OMR sheets with minimal manual intervention.",
-        icon: Database,
-      },
-      {
-        title: "Analytics & Reporting",
-        description:
-          "Generate reports, insights and result analytics with seamless export capabilities.",
-        icon: BarChart3,
-      },
-    ],
-
-    specifications: [
-      {
-        label: "Scanner Type",
-        value: "Optical Mark Reader (OMR)",
-      },
-      {
-        label: "Feeding System",
-        value: "Automatic Document Feeder",
-      },
-      {
-        label: "Processing Capacity",
-        value: "Medium to High Volume",
-      },
-      {
-        label: "Applications",
-        value: "Exams, Surveys & Recruitment",
-      },
-      {
-        label: "Deployment",
-        value: "Educational, Enterprise & Government",
-      },
-    ],
-  },
-
-  axm950: {
-    name: "MarkReader AXM950",
-    category: "Enterprise OMR Scanner",
-    brochure: "MarkReader.pdf",
-    image: "https://omr.in/images/Mark-Reader-AXM960.jpg",
-    shortDescription:
-      "Enterprise-ready OMR scanner optimized for scalable assessment and evaluation workflows.",
-
-    description:
-      "The AXM950 offers reliable and scalable OMR processing capabilities for institutions and organizations conducting high-volume assessments, surveys and examination workflows.",
-
-    features: [
-      {
-        title: "Fast Batch Processing",
-        description:
-          "Optimized batch scanning infrastructure for large examination operations.",
-        icon: ScanSearch,
-      },
-      {
-        title: "Reliable Recognition",
-        description:
-          "Consistent and accurate OMR detection across multiple form types.",
-        icon: CheckCircle2,
-      },
-      {
-        title: "Secure Data Handling",
-        description:
-          "Process and export examination data securely and efficiently.",
-        icon: Database,
-      },
-      {
-        title: "Automated Reporting",
-        description:
-          "Generate automated reports and evaluation summaries instantly.",
-        icon: BarChart3,
-      },
-    ],
-
-    specifications: [
-      {
-        label: "Scanner Type",
-        value: "Enterprise OMR Scanner",
-      },
-      {
-        label: "Feeding System",
-        value: "Automatic Sheet Feeding",
-      },
-      {
-        label: "Processing Capacity",
-        value: "High Volume",
-      },
-      {
-        label: "Applications",
-        value: "Exams, Surveys & Evaluation",
-      },
-      {
-        label: "Deployment",
-        value: "Institutions & Enterprises",
-      },
-    ],
-  },
-
-  axm900: {
-    name: "MarkReader AXM900",
-    category: "Compact OMR Solution",
-    brochure: "MarkReader.pdf",
-    image: "https://omr.in/images/Mark-Reader-AXM960.jpg",
-
-    shortDescription:
-      "Compact and reliable desktop OMR scanner for schools and coaching institutes.",
-
-    description:
-      "The AXM900 is designed for smaller-scale evaluation environments requiring reliable OMR processing with a compact and easy-to-maintain form factor.",
-
-    features: [
-      {
-        title: "Compact Design",
-        description:
-          "Desktop-friendly design suitable for schools and training centers.",
-        icon: ScanSearch,
-      },
-      {
-        title: "Reliable Accuracy",
-        description:
-          "Consistent mark recognition performance for objective evaluations.",
-        icon: CheckCircle2,
-      },
-      {
-        title: "Easy Processing",
-        description:
-          "Simple setup and workflow management for daily assessment operations.",
-        icon: Database,
-      },
-      {
-        title: "Result Generation",
-        description:
-          "Generate student results and reports quickly and efficiently.",
-        icon: BarChart3,
-      },
-    ],
-
-    specifications: [
-      {
-        label: "Scanner Type",
-        value: "Desktop OMR Scanner",
-      },
-      {
-        label: "Feeding System",
-        value: "Manual / Semi-Automatic",
-      },
-      {
-        label: "Processing Capacity",
-        value: "Low to Medium Volume",
-      },
-      {
-        label: "Applications",
-        value: "Schools & Coaching Institutes",
-      },
-      {
-        label: "Deployment",
-        value: "Educational Institutions",
-      },
-    ],
-  },
-};
-
-const industries = [
+const products = [
   {
-    title: "Educational Institutions",
+    slug: 'AXM960',
+    title: 'AXIOME OMR Scanner India Axiome Alpha AXM960',
+    shortDescription:
+      'Mark Reader is authorised dealer of AXIOME OMR Scanners in India. Axiome is one of the leading company in OMR Scanner industry offering latest cutting edge technology solution for all your OMR scanning needs.',
     description:
-      "Schools, colleges, universities and coaching institutes for examination processing.",
-    icon: GraduationCap,
+      'Mark Reader OMR Software provides enterprise-grade OMR evaluation, intelligent validation and scalable assessment processing infrastructure for universities, institutions and organizations.',
+    image:
+      'https://omr.in/images/Mark-Reader-AXM960.jpg',
+    icon: Cpu,
+    features: [
+      'AI-Powered Validation',
+      'Enterprise Security',
+      'Bulk OMR Processing',
+      'Advanced Reporting',
+      'Assessment Analytics',
+      'Workflow Automation',
+    ],
+    benefits: [
+      'Reduce manual evaluation time',
+      'Increase processing accuracy',
+      'Scalable enterprise workflows',
+      'Secure evaluation infrastructure',
+    ],
   },
   {
-    title: "Government & Recruitment",
+    slug: 'omr-scanner',
+    title: 'OMR Scanner',
+    shortDescription:
+      'High-speed OMR scanner systems for enterprise processing.',
     description:
-      "Recruitment examinations, surveys and citizen data collection workflows.",
-    icon: Building2,
+      'Mark Reader OMR Scanner infrastructure delivers high-speed scanning, accurate response capture and scalable enterprise-grade processing workflows.',
+    image:
+      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1800&auto=format&fit=crop',
+    icon: ScanLine,
+    features: [
+      'High-Speed Capture',
+      'Accurate Detection',
+      'Enterprise Ready',
+      'Scalable Infrastructure',
+      'Reliable Processing',
+      'Fast Evaluation',
+    ],
+    benefits: [
+      'Faster OMR sheet processing',
+      'Reliable response detection',
+      'Supports bulk-scale operations',
+      'Optimized enterprise performance',
+    ],
   },
   {
-    title: "Enterprise & Research",
+    slug: 'AXM980',
+    title: 'AXIOME OMR Scanner India Axiome Alpha AXM980',
+    shortDescription:
+      'Mark Reader is authorised dealer of AXIOME OMR Scanners in India. Axiome is one of the leading company in OMR Scanner industry offering latest cutting edge technology solution for all your OMR scanning needs.',
     description:
-      "Enterprise feedback forms, attendance and survey processing solutions.",
-    icon: ClipboardList,
+      'Modern OMR evaluation systems combining automation, analytics and secure enterprise workflows for large-scale assessment infrastructure.',
+    image:
+      'https://omr.in/images/Mark-Reader-AXM980.jpeg',
+    icon: ClipboardCheck,
+    features: [
+      'Secure Evaluation',
+      'Workflow Automation',
+      'Assessment Analytics',
+      'Reliable Processing',
+      'AI Validation',
+      'Enterprise Reporting',
+    ],
+    benefits: [
+      'Modernize evaluation workflows',
+      'Improve operational efficiency',
+      'Enable intelligent analytics',
+      'Deliver secure assessments',
+    ],
   },
-];
+]
 
-export default function ProductDetailsPage({
+type Props = {
+  params: Promise<{
+    slug: string
+  }>
+}
+
+export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params;
-
-  const product =
-    products[slug as keyof typeof products];
+}: Props) {
+  const { slug } = await params
+  const product =  products.find((item) => item.slug === slug)
 
   if (!product) {
-    notFound();
+    return {
+      title: 'Product Not Found | Mark Reader',
+    }
   }
 
+  return {
+    title: `${product.title} | Enterprise OMR Products India`,
+    description: product.description,
+    keywords: [
+      product.title,
+      'OMR Software',
+      'OMR Scanner',
+      'OMR Evaluation',
+      'Enterprise OMR',
+      'Assessment Infrastructure',
+      'OMR Processing',
+    ],
+    alternates: {
+      canonical: `https://omr.in/products/${product.slug}`,
+    },
+    openGraph: {
+      title: `${product.title} | Mark Reader`,
+      description: product.description,
+      url: `https://omr.in/products/${product.slug}`,
+      siteName: 'Mark Reader',
+      type: 'website',
+    },
+  }
+}
+
+export async function generateStaticParams() {
+  return products.map((product) => ({
+    slug: product.slug,
+  }))
+}
+
+const workflow = [
+  {
+    title: 'OMR Sheet Design',
+    description:
+      'Custom-designed OMR sheets aligned with enterprise workflows.',
+    icon: Layers3,
+  },
+  {
+    title: 'Scanning & Capture',
+    description:
+      'High-speed scanning infrastructure captures responses accurately.',
+    icon: ScanLine,
+  },
+  {
+    title: 'Validation & Evaluation',
+    description:
+      'AI-powered validation ensures secure and reliable processing.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Analytics & Reports',
+    description:
+      'Generate enterprise-grade reports and assessment insights.',
+    icon: BarChart3,
+  },
+]
+
+export default async function ProductSlugPage({
+  params,
+}: Props) {
+  const { slug } = await params
+  
+  const product = products.find(
+    (item) => item.slug === slug
+  )
+
+  if (!product) {
+    notFound()
+  }
+
+
+  const Icon = product.icon
+
   return (
-    <main className="bg-background text-foreground">
-      {/* HERO */}
-     
-      <section className="relative overflow-hidden border-b border-border bg-background">
-        {/* GRID */}
-        
-        <div className="absolute inset-0 bg-grid-slate-100/[0.4] bg-[size:40px_40px]" />
+    <>
+      {/* SCHEMA */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: product.title,
+            description: product.description,
+            brand: {
+              '@type': 'Brand',
+              name: 'Mark Reader',
+            },
+            url: `https://omr.in/products/${product.slug}`,
+          }),
+        }}
+      />
 
-        {/* GLOW */}
-        <div className="absolute top-0 right-0 h-[450px] w-[450px] rounded-full bg-primary/10 blur-3xl" />
+      <main className="relative overflow-hidden bg-[#020617] text-white">
+        {/* Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.10),transparent_30%)]" />
 
-       <div className="relative mx-auto max-w-7xl px-6 pt-36 pb-24 lg:px-8">
-          <Link
-  href="/products"
-  className="mb-10 inline-flex items-center gap-2 rounded-xl border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm transition hover:bg-muted"
->
-  <ArrowLeft className="h-4 w-4" />
-  Back to Products
-</Link>
-
-          <div className="grid items-center gap-16 lg:grid-cols-2">
-            {/* CONTENT */}
+        {/* HERO */}
+        <section className="relative border-b border-white/5">
+          <div className="mx-auto grid max-w-7xl items-center gap-20 px-6 py-24 lg:grid-cols-2 lg:px-8 lg:py-32">
+            {/* LEFT */}
             <div>
-              <div className="inline-flex items-center rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-primary shadow-sm">
-                {product.category}
+              {/* Breadcrumb */}
+              <div className="flex items-center gap-3 text-sm text-slate-500">
+                <Link
+                  href="/"
+                  className="transition hover:text-white"
+                >
+                  Home
+                </Link>
+
+                <span>/</span>
+
+                <Link
+                  href="/products"
+                  className="transition hover:text-white"
+                >
+                  Products
+                </Link>
+
+                <span>/</span>
+
+                <span className="text-slate-300">
+                  {product.title}
+                </span>
               </div>
 
-              <h1 className="mt-8 text-5xl font-bold tracking-tight leading-tight sm:text-6xl">
-                {product.name}
+              {/* Badge */}
+              <div className="mt-8 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-300">
+                Enterprise OMR Product
+              </div>
+
+              {/* Heading */}
+              <h1 className="mt-8 text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+                {product.title}
               </h1>
 
-              <p className="mt-8 text-xl leading-8 text-muted-foreground">
-                {product.shortDescription}
+              {/* Description */}
+              <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+                {product.description}
               </p>
 
-              {/* BUTTONS */}
-              <div className="mt-10 flex flex-wrap gap-4">
-                <button className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90">
-                  Request Demo
-                  <ArrowRight className="h-4 w-4" />
-                </button>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-400">
+                Mark Reader delivers enterprise-grade OMR infrastructure
+                optimized for operational scalability, intelligent processing
+                and secure assessment workflows.
+              </p>
 
-                <a
-                  href={product.brochure}
-                  download
-                  className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-muted"
+              {/* CTA */}
+              <div className="mt-12 flex flex-wrap gap-5">
+                <Link
+                  href="/get-quote"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-7 py-4 text-sm font-semibold text-white transition hover:bg-blue-500"
                 >
-                  <Download className="h-4 w-4" />
-                  Download Brochure
-                </a>
+                  Get Enterprise Quote
+
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  href="/contact"
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-7 py-4 text-sm font-semibold text-white transition hover:bg-white/[0.05]"
+                >
+                  Talk To Experts
+                </Link>
               </div>
 
-              {/* STATS */}
-              <div className="mt-12 grid grid-cols-2 gap-4">
-                {[
-                  "High Accuracy",
-                  "Fast Processing",
-                  "Reliable Performance",
-                  "Enterprise Ready",
-                ].map((item) => (
+              {/* FEATURES */}
+              <div className="mt-12 flex flex-wrap gap-4">
+                {product.features.slice(0, 4).map((feature) => (
                   <div
-                    key={item}
-                    className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+                    key={feature}
+                    className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2"
                   >
-                    <p className="text-sm font-semibold text-foreground">
-                      {item}
-                    </p>
+                    <CheckCircle2 className="h-4 w-4 text-blue-400" />
+
+                    <span className="text-sm text-slate-300">
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* IMAGE */}
+            {/* RIGHT */}
             <div className="relative">
-              <div className="absolute inset-0 rounded-[40px] bg-primary/10 blur-3xl" />
-
-              <div className="relative overflow-hidden rounded-[40px] border border-border bg-card shadow-2xl">
+              <div className="overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.03] shadow-2xl">
                 <Image
                   src={product.image}
-                  alt={product.name}
-                  width={900}
-                  height={700}
-                  className="h-[500px] w-full object-cover"
+                  alt={product.title}
+                  width={1800}
+                  height={1800}
+                  priority
+                  className="h-[720px] w-full object-cover"
+                />
+              </div>
+
+              {/* Floating Card */}
+              <div className="absolute -bottom-8 left-1/2 w-[90%] -translate-x-1/2 rounded-[32px] border border-white/10 bg-white/[0.05] p-8 backdrop-blur-2xl">
+                <div className="flex items-start gap-5">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10">
+                    <Icon className="h-8 w-8 text-blue-400" />
+                  </div>
+
+                  <div>
+                    <h2 className="text-2xl font-bold">
+                      Enterprise Infrastructure
+                    </h2>
+
+                    <p className="mt-3 leading-7 text-slate-300">
+                      Intelligent OMR infrastructure optimized for enterprise
+                      processing, scalability and operational efficiency.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FEATURES */}
+        <section className="py-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-14 lg:grid-cols-2">
+              {/* LEFT */}
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-400">
+                  Product Features
+                </p>
+
+                <h2 className="mt-5 text-4xl font-bold tracking-tight lg:text-5xl">
+                  Advanced OMR Infrastructure
+                </h2>
+
+                <p className="mt-8 text-lg leading-8 text-slate-300">
+                  {product.title} is built for enterprise-grade assessment,
+                  intelligent processing and scalable evaluation workflows.
+                </p>
+
+                <div className="mt-10 space-y-5">
+                  {product.features.map((feature, index) => (
+                    <div
+                      key={feature}
+                      className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-sm font-bold text-blue-400">
+                        0{index + 1}
+                      </div>
+
+                      <span className="text-lg text-slate-300">
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* RIGHT */}
+              <div className="overflow-hidden rounded-[36px] border border-white/10">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  width={1800}
+                  height={1800}
+                  className="h-full w-full object-cover"
                 />
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* OVERVIEW */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="grid gap-14 lg:grid-cols-2">
-          {/* LEFT */}
-          <div>
-            <span className="text-primary uppercase tracking-[0.2em] text-sm font-semibold">
-              Product Overview
-            </span>
+        {/* BENEFITS */}
+        <section className="border-y border-white/5 bg-white/[0.02] py-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <header className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-400">
+                Why Choose {product.title}
+              </p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-tight">
-              Enterprise OMR Infrastructure
-            </h2>
+              <h2 className="mt-5 text-4xl font-bold tracking-tight lg:text-5xl">
+                Enterprise Performance Benefits
+              </h2>
+            </header>
 
-            <p className="mt-8 text-lg leading-8 text-muted-foreground">
-              {product.description}
-            </p>
-          </div>
-
-          {/* SPECS */}
-          <div className="overflow-hidden rounded-[32px] border border-border bg-card shadow-sm">
-            <div className="border-b border-border px-8 py-6">
-              <h3 className="text-2xl font-bold">
-                Technical Specifications
-              </h3>
-            </div>
-
-            {product.specifications.map(
-              (spec, index) => (
-                <div
-                  key={spec.label}
-                  className={`flex items-center justify-between px-8 py-6 ${
-                    index !==
-                    product.specifications
-                      .length -
-                      1
-                      ? "border-b border-border"
-                      : ""
-                  }`}
+            <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {product.benefits.map((benefit, index) => (
+                <article
+                  key={benefit}
+                  className="rounded-[32px] border border-white/10 bg-[#0b1120] p-8"
                 >
-                  <span className="font-medium text-muted-foreground">
-                    {spec.label}
-                  </span>
-
-                  <span className="text-right font-semibold text-foreground">
-                    {spec.value}
-                  </span>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURES */}
-      <section className="bg-muted/30 py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="text-primary uppercase tracking-[0.2em] text-sm font-semibold">
-              Key Features
-            </span>
-
-            <h2 className="mt-4 text-4xl font-bold tracking-tight">
-              Built For Scalable Operations
-            </h2>
-
-            <p className="mt-5 text-lg text-muted-foreground">
-              Designed for high-volume,
-              accurate and enterprise-grade
-              OMR workflows.
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-6 md:grid-cols-2">
-            {product.features.map((feature) => {
-              const Icon = feature.icon;
-
-              return (
-                <div
-                  key={feature.title}
-                  className="rounded-[32px] border border-border bg-card p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <Icon className="h-8 w-8" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/10 text-xl font-bold text-blue-400">
+                    0{index + 1}
                   </div>
 
-                  <h3 className="mt-8 text-2xl font-bold">
-                    {feature.title}
+                  <h3 className="mt-8 text-2xl font-semibold">
+                    {benefit}
                   </h3>
 
-                  <p className="mt-4 leading-8 text-muted-foreground">
-                    {feature.description}
+                  <p className="mt-5 leading-8 text-slate-400">
+                    Enterprise-grade workflows optimized for reliability,
+                    scalability and operational efficiency.
                   </p>
-                </div>
-              );
-            })}
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* INDUSTRIES */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="max-w-3xl">
-          <span className="text-primary uppercase tracking-[0.2em] text-sm font-semibold">
-            Use Cases
-          </span>
+        {/* WORKFLOW */}
+        <section className="py-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <header className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-400">
+                Product Workflow
+              </p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-tight">
-            Ideal Industry Applications
-          </h2>
+              <h2 className="mt-5 text-4xl font-bold tracking-tight lg:text-5xl">
+                Intelligent OMR Ecosystem
+              </h2>
 
-          <p className="mt-5 text-lg text-muted-foreground">
-            Trusted across educational,
-            enterprise and government
-            sectors.
-          </p>
-        </div>
+              <p className="mt-6 text-lg leading-8 text-slate-400">
+                Enterprise workflow optimized for intelligent assessment,
+                secure evaluation and scalable OMR processing.
+              </p>
+            </header>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
-          {industries.map((industry) => {
-            const Icon = industry.icon;
+            <div className="mt-16 grid gap-6 lg:grid-cols-4">
+              {workflow.map((item, index) => {
+                const WorkflowIcon = item.icon
 
-            return (
-              <div
-                key={industry.title}
-                className="rounded-[32px] border border-border bg-card p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                  <Icon className="h-8 w-8" />
-                </div>
+                return (
+                  <article
+                    key={index}
+                    className="rounded-[32px] border border-white/10 bg-white/[0.03] p-8"
+                  >
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/10">
+                      <WorkflowIcon className="h-7 w-7 text-blue-400" />
+                    </div>
 
-                <h3 className="mt-8 text-2xl font-bold">
-                  {industry.title}
-                </h3>
+                    <div className="mt-8 flex items-center gap-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500/10 text-xs font-bold text-blue-400">
+                        0{index + 1}
+                      </div>
 
-                <p className="mt-4 leading-8 text-muted-foreground">
-                  {industry.description}
-                </p>
+                      <h3 className="text-xl font-semibold">
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    <p className="mt-5 leading-8 text-slate-400">
+                      {item.description}
+                    </p>
+                  </article>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ENTERPRISE SECTION */}
+        <section className="border-y border-white/5 bg-white/[0.02] py-28">
+          <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:px-8">
+            {/* LEFT */}
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-400">
+                Enterprise Ready
+              </p>
+
+              <h2 className="mt-5 text-4xl font-bold leading-tight lg:text-5xl">
+                Built For Modern Assessment Ecosystems
+              </h2>
+
+              <p className="mt-8 text-lg leading-8 text-slate-300">
+                Mark Reader products are trusted by universities,
+                institutions, recruitment agencies and enterprise
+                organizations for scalable assessment workflows.
+              </p>
+
+              <div className="mt-10 space-y-5">
+                {[
+                  {
+                    icon: Building2,
+                    title: 'Enterprise Infrastructure',
+                  },
+                  {
+                    icon: Database,
+                    title: 'Advanced Analytics',
+                  },
+                  {
+                    icon: Workflow,
+                    title: 'Workflow Automation',
+                  },
+                ].map((item, index) => {
+                  const EnterpriseIcon = item.icon
+
+                  return (
+                    <div
+                      key={index}
+                      className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#0b1120] p-5"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
+                        <EnterpriseIcon className="h-6 w-6 text-blue-400" />
+                      </div>
+
+                      <h3 className="text-lg font-semibold">
+                        {item.title}
+                      </h3>
+                    </div>
+                  )
+                })}
               </div>
-            );
-          })}
-        </div>
-      </section>
+            </div>
 
-      {/* CTA */}
-      <section className="pb-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="overflow-hidden rounded-[40px] bg-primary px-8 py-16 text-primary-foreground lg:px-16">
-            <div className="grid items-center gap-10 lg:grid-cols-2">
-              <div>
-                <h2 className="text-4xl font-bold tracking-tight leading-tight">
-                  Ready to automate your OMR
-                  workflow?
-                </h2>
+            {/* RIGHT */}
+            <div className="overflow-hidden rounded-[36px] border border-white/10">
+              <Image
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1800&auto=format&fit=crop"
+                alt="Enterprise OMR Infrastructure"
+                width={1800}
+                height={1800}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+        </section>
 
-                <p className="mt-5 text-lg text-primary-foreground/80">
-                  Streamline examination
-                  evaluation, surveys and
-                  bulk data processing with{" "}
-                  {product.name}.
-                </p>
-              </div>
+        {/* CTA */}
+        <section className="pb-28 pt-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="rounded-[40px] border border-white/10 bg-gradient-to-r from-blue-600/10 to-slate-900 p-14 text-center">
+              <h2 className="text-4xl font-bold leading-tight lg:text-5xl">
+                Ready To Upgrade Your OMR Infrastructure?
+              </h2>
 
-              <div className="flex flex-wrap gap-4 lg:justify-end">
+              <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-slate-300">
+                Explore enterprise-grade OMR software, intelligent evaluation
+                systems and scalable processing infrastructure designed for
+                modern organizations.
+              </p>
+
+              <div className="mt-12 flex flex-wrap justify-center gap-5">
                 <Link
-                  href="/contact"
-                  className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-primary transition hover:bg-white/90"
+                  href="/get-quote"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-7 py-4 text-sm font-semibold text-white transition hover:bg-blue-500"
                 >
-                  Contact Sales
+                  Get Enterprise Quote
+
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
 
-                <button className="rounded-xl border border-primary-foreground/20 bg-primary-foreground/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-primary-foreground/20">
-                  Schedule Demo
-                </button>
+                <Link
+                  href="/contact"
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-7 py-4 text-sm font-semibold text-white transition hover:bg-white/[0.05]"
+                >
+                  Talk To Experts
+                </Link>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
-  );
+        </section>
+      </main>
+    </>
+  )
 }

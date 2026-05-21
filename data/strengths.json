@@ -1,0 +1,47 @@
+{
+    "strengths" : {
+    "badge": "Our Strength",
+    "title": {
+      "line1": "Enterprise-Grade OMR &",
+      "line2": "Assessment Infrastructure"
+    },
+    "description" : "Built with scalability, reliability and automation at the core, our solutions empower institutions and enterprises with intelligent assessment processing infrastructure.",
+    "data" : [{
+    "title": "High Accuracy OMR Processing",
+    "description":
+      "Advanced OMR technology delivering precise and reliable assessment processing for enterprise-scale operations.",
+    "icon": "ScanSearch"
+  },
+  {
+    "title": "Enterprise Reliability",
+    "description":
+      "Robust infrastructure designed for institutions, universities and government organizations with operational stability.",
+    "icon": "ShieldCheck"
+  },
+  {
+    "title": "Automation & Intelligence",
+    "description":
+      "AI-powered workflow automation for faster evaluation, validation and document processing operations.",
+    "icon": "Cpu"
+  },
+  {
+    "title": "Scalable Infrastructure",
+    "description":
+      "Cloud-ready systems capable of handling large-scale examinations, surveys and enterprise assessment workflows.",
+    "icon": "Layers3"
+  },
+  {
+    "title": "Analytics & Reporting",
+    "description":
+      "Comprehensive analytics dashboards and reporting systems for performance tracking and decision-making.",
+    "icon": "BarChart3"
+  },
+  {
+    "title": "Government & Institutional Ready",
+    "description":
+      "Trusted assessment infrastructure built for enterprises, educational institutions and public sector organizations.",
+    "icon": "Building2"
+  }
+]
+}
+}
