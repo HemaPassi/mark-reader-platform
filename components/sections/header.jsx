@@ -1,49 +1,47 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import {
-  ArrowRight,
-  Menu,
-  X,
-} from 'lucide-react'
-import { useState } from 'react'
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import ThemeToggle from "@/components/ui/molecules/ThemeToggle";
+
+import { ArrowRight, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const navItems = [
   {
-    label: 'Home',
-    href: '/',
+    label: "Home",
+    href: "/",
   },
   {
-    label: 'About',
-    href: '/about',
+    label: "About",
+    href: "/about",
   },
   {
-    label: 'Products',
-    href: '/products',
+    label: "Products",
+    href: "/products",
   },
   {
-    label: 'Strength',
-    href: '/strength',
+    label: "Strength",
+    href: "/strength",
   },
   {
-    label: 'Services',
-    href: '/services',
+    label: "Services",
+    href: "/services",
   },
   {
-    label: 'Workflow',
-    href: '/workflow',
+    label: "Workflow",
+    href: "/workflow",
   },
   {
-    label: 'Contact',
-    href: '/contact',
+    label: "Contact",
+    href: "/contact",
   },
-]
+];
 
 export default function Header() {
-  const pathname = usePathname()
-  const [mobileMenu, setMobileMenu] = useState(false)
+  const pathname = usePathname();
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
     <header
@@ -54,22 +52,25 @@ export default function Header() {
         {/* LOGO */}
         <Link
           href="/"
-          aria-label="Mark Reader Home"
-          className="group flex items-center gap-4"
+          aria-label="OMR.in"
+          className="flex items-center shrink-0"
         >
-          {/* Logo Image */}
-          <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
-            <Image
-              src="/logo.png"
-              alt="Mark Reader Logo"
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            alt="OMR.in - Mark Reader"
+            width={340}
+            height={116}
+            priority
+            className="
+      h-10 w-auto
+      sm:h-12
+      md:h-14
+      lg:h-16
+    "
+          />
 
           {/* Brand */}
-          <div>
+          {/* <div>
             <span className="block text-xl font-bold tracking-wide text-white">
               Mark Reader
             </span>
@@ -77,31 +78,31 @@ export default function Header() {
             <span className="mt-1 block text-[10px] uppercase tracking-[0.32em] text-slate-500">
               Enterprise OMR Solutions
             </span>
-          </div>
+          </div> */}
         </Link>
-
+        <ThemeToggle />
         {/* DESKTOP NAV */}
         <nav
           aria-label="Primary Navigation"
           className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 backdrop-blur-xl lg:flex"
         >
           {navItems.map((item) => {
-            const active = pathname === item.href
+            const active = pathname === item.href;
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                aria-current={active ? 'page' : undefined}
+                aria-current={active ? "page" : undefined}
                 className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
                   active
-                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20'
-                    : 'text-slate-400 hover:bg-white/[0.06] hover:text-white'
+                    ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
+                    : "text-slate-400 hover:bg-white/[0.06] hover:text-white"
                 }`}
               >
                 {item.label}
               </Link>
-            )
+            );
           })}
         </nav>
 
@@ -146,23 +147,23 @@ export default function Header() {
             className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6"
           >
             {navItems.map((item) => {
-              const active = pathname === item.href
+              const active = pathname === item.href;
 
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  aria-current={active ? 'page' : undefined}
+                  aria-current={active ? "page" : undefined}
                   onClick={() => setMobileMenu(false)}
                   className={`rounded-2xl px-5 py-4 text-sm font-medium transition-all duration-300 ${
                     active
-                      ? 'bg-orange-500 text-white'
-                      : 'text-slate-300 hover:bg-white/[0.05] hover:text-white'
+                      ? "bg-orange-500 text-white"
+                      : "text-slate-300 hover:bg-white/[0.05] hover:text-white"
                   }`}
                 >
                   {item.label}
                 </Link>
-              )
+              );
             })}
 
             {/* MOBILE CTA */}
@@ -188,5 +189,5 @@ export default function Header() {
         </div>
       )}
     </header>
-  )
+  );
 }
