@@ -55,7 +55,7 @@ export default function Header() {
           aria-label="OMR.in"
           className="flex items-center shrink-0"
         >
-          {/* <Image
+          <Image
             src="/logo.png"
             alt="OMR.in - Mark Reader"
             width={340}
@@ -67,10 +67,10 @@ export default function Header() {
       md:h-14
       lg:h-16
     "
-          /> */}
+          />
 
           {/* Brand */}
-          <div>
+          {/* <div>
             <span className="block text-xl font-bold tracking-wide text-white">
               Mark Reader
             </span>
@@ -78,9 +78,9 @@ export default function Header() {
             <span className="mt-1 block text-[10px] uppercase tracking-[0.32em] text-slate-500">
               Enterprise OMR Solutions
             </span>
-          </div> 
+          </div> */}
         </Link>
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
         {/* DESKTOP NAV */}
         <nav
           aria-label="Primary Navigation"
